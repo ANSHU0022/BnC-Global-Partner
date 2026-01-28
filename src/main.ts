@@ -7,7 +7,7 @@ interface PartnerFormData {
   message: string;
 }
 
-interface Event {
+interface PartnerEvent {
   day: string;
   month: string;
   title: string;
