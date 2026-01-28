@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnership Opportunities - BnC Global</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2c5aa0',
+                        secondary: '#1e3d72',
+                        accent: '#3b82f6',
+                        'accent-light': '#2C5AA0',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'geist': ['Geist', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="font-geist">
+    <!-- Header -->
+    <header class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <nav class="py-3">
+            <div class="max-w-6xl mx-auto px-5 flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <div class="mobile-menu-btn cursor-pointer flex flex-col gap-1" id="mobile-menu-btn">
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all"></span>
+                        <span class="w-6 h-0.5 bg-gray-700 transition-all"></span>
+                    </div>
+                    <img src="https://static.wixstatic.com/media/0446e3_50ff54e1251b45ef8a1066bca3a75b0e~mv2.png/v1/fill/w_256,h_256,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b%20nc%20global.png" alt="BnC Global Logo" class="h-24 w-24 object-contain">
+                    <span class="text-3xl font-bold text-primary tracking-tight font-poppins">BnC Global</span>
+                </div>
+                <ul class="hidden md:flex items-center gap-10 nav-menu">
+                    <li><a href="#hero" class="nav-link text-lg hover:text-primary transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Home</a></li>
+                    <li><a href="#partnerships" class="nav-link text-lg hover:text-primary transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Partnerships</a></li>
+                    <li><a href="#events" class="nav-link text-lg hover:text-primary transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Events</a></li>
+                    <li><a href="#why-choose" class="nav-link text-lg hover:text-primary transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Why Choose Us</a></li>
+                    <li><a href="#contact" class="nav-link text-lg hover:text-primary transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Apply Now</a></li>
+                </ul>
+                <div class="flex items-center gap-4">
+                    <a href="login.html" class="hidden md:inline-block bg-primary hover:bg-secondary text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-300">Login</a>
+                </div>
+            </div>
+            <!-- Sidebar Menu -->
+            <div id="sidebar-menu" class="fixed top-0 left-0 h-full w-80 bg-white shadow-2xl transform -translate-x-full transition-transform duration-300 z-50 rounded-r-2xl">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-8">
+                        <h3 class="text-xl font-bold text-primary">Menu</h3>
+                        <button id="close-sidebar" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Navigation Links -->
+                    <div class="mb-8">
+                        <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">Navigation</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#hero" class="block py-2 px-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">Home</a></li>
+                            <li><a href="#partnerships" class="block py-2 px-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">Partnerships</a></li>
+                            <li><a href="#events" class="block py-2 px-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">Events</a></li>
+                            <li><a href="#why-choose" class="block py-2 px-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">Why Choose Us</a></li>
+                            <li><a href="#contact" class="block py-2 px-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">Apply Now</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Login Options -->
+                    <div>
+                        <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">Account</h4>
+                        <div class="space-y-3">
+                            <a href="login.html" class="flex items-center gap-3 py-3 px-4 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                                <i class="fas fa-user"></i>
+                                <span>Partner Login</span>
+                            </a>
+                            <a href="login.html#admin" class="flex items-center gap-3 py-3 px-4 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Admin Login</span>
+                            </a>
+                            <div id="profile-section" class="hidden">
+                                <a href="partner-dashboard.html" class="flex items-center gap-3 py-3 px-4 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                                <button id="logout-sidebar" class="w-full flex items-center gap-3 py-3 px-4 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors mt-3">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Logout</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar Overlay -->
+            <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"></div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    
+        
+        <section id="hero" class="relative text-white pt-36 pb-20 overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0" 
+         style="background-image: url('https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+                background-size: cover; 
+                background-position: center; 
+                opacity: 100;">
+    </div>
+  </div>
+
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+            <div class="absolute top-20 right-20 w-3 h-3 bg-white rounded-full animate-pulse delay-100"></div>
+            <div class="absolute bottom-20 left-20 w-2 h-2 bg-accent-light rounded-full animate-pulse delay-200"></div>
+            <div class="absolute bottom-10 right-10 w-4 h-4 bg-white rounded-full animate-pulse delay-300"></div>
+        </div>
+        
+        <div class="max-w-6xl mx-auto px-5 relative z-10">
+            <!-- Top Badge -->
+            <div class="text-center mb-8">
+                <span class="inline-block bg-white/20 backdrop-blur-md border border-white/30 
+                         text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg">
+            🤝           Join Our Growing Network
+                 </span>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="text-center mb-12">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 font-poppins">
+                    Partner with <span class="bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent">BnC Global</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed">
+                    Join India's leading accounting outsourcing network and unlock limitless revenue opportunities
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+                    <a href="#contact" class="bg-gradient-to-r from-accent to-accent-light hover:from-accent-light hover:to-accent text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Become a Partner →
+                    </a>
+                    <a href="login.html" class="bg-white hover:bg-gray-100 text-gray-800 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-3">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Partner Login
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Statistics Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105">
+                    <div class="w-12 h-12 bg-gradient-to-r from-accent to-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-handshake text-white text-xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold mb-2">200+</div>
+                    <div class="text-sm text-white/80">Partner Firms</div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105">
+                    <div class="w-12 h-12 bg-gradient-to-r from-accent to-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-globe text-white text-xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold mb-2">25+</div>
+                    <div class="text-sm text-white/80">Cities Covered</div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105">
+                    <div class="w-12 h-12 bg-gradient-to-r from-accent to-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-white text-xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold mb-2">5,000+</div>
+                    <div class="text-sm text-white/80">Happy Clients</div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105">
+                    <div class="w-12 h-12 bg-gradient-to-r from-accent to-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-star text-white text-xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold mb-2">95%</div>
+                    <div class="text-sm text-white/80">Partner Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Types -->
+    <section id="partnerships" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-5">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-700 font-poppins relative after:content-[''] after:absolute after:bottom-[-8px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-48 after:h-0.5 after:bg-primary">
+                Partnership <span class="text-primary">Opportunities</span>
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="partnership-card bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 p-8 text-center border border-gray-100 group">
+                    <div class="text-5xl text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Strategic Partners</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Long-term strategic alliances for mutual growth and market expansion</p>
+                    <ul class="text-left space-y-3 mb-6">
+                        <li class="flex items-center"><span class="text-green-500 mr-3 font-bold">✓</span><span class="text-gray-700">Joint venture opportunities</span></li>
+                        <li class="flex items-center"><span class="text-green-500 mr-3 font-bold">✓</span><span class="text-gray-700">Technology integration</span></li>
+                        <li class="flex items-center"><span class="text-green-500 mr-3 font-bold">✓</span><span class="text-gray-700">Market co-development</span></li>
+                    </ul>
+                    <div class="mt-auto">
+                        <a href="#contact" class="inline-block bg-primary hover:bg-secondary text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="partnership-card bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 p-8 text-center border border-gray-100 group">
+                    <div class="text-5xl text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Channel Partners</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Expand your reach through our established distribution network</p>
+                    <ul class="text-left space-y-3 mb-6">
+                        <li class="flex items-center"><span class="text-green-500 mr-3 font-bold">✓</span><span class="text-gray-700">Reseller programs</span></li>
+                        <li class="flex items-center"><span class="text-green-500 mr-3 font-bold">✓</span><span class="text-gray-700">Distributor network</span></li>
+                        <li class="flex items-center"><span class="text-green-500 mr-3 font-bold">✓</span><span class="text-gray-700">Sales support</span></li>
+                    </ul>
+                    <div class="mt-auto">
+                        <a href="#contact" class="inline-block bg-primary hover:bg-secondary text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="partnership-card bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 p-8 text-center border border-gray-100 group">
+                    <div class="text-5xl text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Technology Partners</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Integrate and innovate with cutting-edge technology solutions</p>
+                    <ul class="text-left space-y-3 mb-6">
+                        <li class="flex items-center"><span class="text-green-500 mr-3 font-bold">✓</span><span class="text-gray-700">API integrations</span></li>
+                        <li class="flex items-center"><span class="text-green-500 mr-3 font-bold">✓</span><span class="text-gray-700">Platform partnerships</span></li>
+                        <li class="flex items-center"><span class="text-green-500 mr-3 font-bold">✓</span><span class="text-gray-700">Innovation labs</span></li>
+                    </ul>
+                    <div class="mt-auto">
+                        <a href="#contact" class="inline-block bg-primary hover:bg-secondary text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Complete Financial Ecosystem -->
+    <section class="py-14 bg-white">
+        <div class="max-w-6xl mx-auto px-5">
+            <h2 class="text-4xl font-bold text-center mb-6 text-gray-700 font-poppins relative after:content-[''] after:absolute after:bottom-[-8px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-48 after:h-0.5 after:bg-primary">
+                 Complete Financial <span class="text-primary">Ecosystem</span>
+            </h2>
+            
+            <div class="flex justify-center">
+                <img src="https://static.wixstatic.com/media/0446e3_ac1145593e02499683365880e7cc4659~mv2.png/v1/crop/x_51,y_153,w_1831,h_879/fill/w_1831,h_879,al_c,q_90,enc_avif,quality_auto/Artboard%2017.png" alt="A Complete Financial Ecosystem" class="max-w-full h-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-5">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-700 font-poppins relative after:content-[''] after:absolute after:bottom-[-8px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-48 after:h-0.5 after:bg-primary">
+                Recent & Upcoming <span class="text-primary">Events</span>
+            </h2>
+            
+            <!-- Upcoming Events -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-semibold mb-8 flex items-center gap-2 font-poppins text-gray-700">
+                    <i class="fas fa-calendar-plus text-primary"></i> Upcoming Events
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="event-card card p-6 flex gap-4 border-l-4 border-green-500">
+                        <div class="text-center min-w-16">
+                            <span class="block text-3xl font-bold text-primary">15</span>
+                            <span class="block text-sm text-gray-500 uppercase">FEB</span>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-xl font-semibold mb-2">Global Partnership Summit 2026</h4>
+                            <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt mr-2"></i>Mumbai, India</p>
+                            <p class="text-gray-700 mb-3">Join industry leaders for networking and partnership opportunities</p>
+                            <a href="#" class="text-primary font-semibold hover:text-secondary">Register Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="event-card card p-6 flex gap-4 border-l-4 border-green-500">
+                        <div class="text-center min-w-16">
+                            <span class="block text-3xl font-bold text-primary">28</span>
+                            <span class="block text-sm text-gray-500 uppercase">FEB</span>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-xl font-semibold mb-2">Technology Innovation Workshop</h4>
+                            <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt mr-2"></i>Virtual Event</p>
+                            <p class="text-gray-700 mb-3">Explore latest tech trends and partnership models</p>
+                            <a href="#" class="text-primary font-semibold hover:text-secondary">Join Online</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Events -->
+            <div>
+                <h3 class="text-2xl font-semibold mb-8 flex items-center gap-2 font-poppins text-gray-700">
+                    <i class="fas fa-calendar-check text-primary"></i> Recent Events
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="event-card card p-6 flex gap-4 border-l-4 border-gray-400">
+                        <div class="text-center min-w-16">
+                            <span class="block text-3xl font-bold text-primary">10</span>
+                            <span class="block text-sm text-gray-500 uppercase">JAN</span>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-xl font-semibold mb-2">Partner Appreciation Gala</h4>
+                            <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt mr-2"></i>Delhi, India</p>
+                            <p class="text-gray-700 mb-3">Celebrated successful partnerships and achievements of 2025</p>
+                            <a href="#" class="text-primary font-semibold hover:text-secondary">View Highlights</a>
+                        </div>
+                    </div>
+                    
+                    <div class="event-card card p-6 flex gap-4 border-l-4 border-gray-400">
+                        <div class="text-center min-w-16">
+                            <span class="block text-3xl font-bold text-primary">20</span>
+                            <span class="block text-sm text-gray-500 uppercase">DEC</span>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-xl font-semibold mb-2">Annual Business Conference</h4>
+                            <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt mr-2"></i>Bangalore, India</p>
+                            <p class="text-gray-700 mb-3">Strategic planning session with key partners and stakeholders</p>
+                            <a href="#" class="text-primary font-semibold hover:text-secondary">View Summary</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why BNC Global Section -->
+    <section id="why-choose" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-5">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 font-poppins text-gray-800 relative after:content-[''] after:absolute after:bottom-[-8px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-48 after:h-0.5 after:bg-primary">Why Choose <span class="text-primary">BnC Global?</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">We combine legal expertise with technology to provide the fastest, most reliable business setup experience in India.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-2 hover:bg-blue-50 border border-gray-100 group">
+                    <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-200">
+                        <i class="fas fa-balance-scale text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 group-hover:text-primary transition-colors duration-200">Expert Guidance</h3>
+                    <p class="text-gray-600 leading-relaxed">Certified CAs & experienced lawyers guiding you through every step</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-2 hover:bg-blue-50 border border-gray-100 group">
+                    <div class="w-16 h-16 bg-gray-700 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-200">
+                        <i class="fas fa-cube text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 group-hover:text-primary transition-colors duration-200">All-in-One Solution</h3>
+                    <p class="text-gray-600 leading-relaxed">Complete registration, GST, licenses, and compliance in one package</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-2 hover:bg-blue-50 border border-gray-100 group">
+                    <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-200">
+                        <i class="fas fa-dollar-sign text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 group-hover:text-primary transition-colors duration-200">Transparent Pricing</h3>
+                    <p class="text-gray-600 leading-relaxed">No hidden costs, clear pricing with detailed breakdowns</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-2 hover:bg-blue-50 border border-gray-100 group">
+                    <div class="w-16 h-16 bg-gray-700 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-200">
+                        <i class="fas fa-bolt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 group-hover:text-primary transition-colors duration-200">Fast Turnaround</h3>
+                    <p class="text-gray-600 leading-relaxed">Complete registration in just 7-10 working days</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-2 hover:bg-blue-50 border border-gray-100 group">
+                    <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-200">
+                        <i class="fas fa-heart text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 group-hover:text-primary transition-colors duration-200">Post-Setup Support</h3>
+                    <p class="text-gray-600 leading-relaxed">Annual filings, compliance management, and ongoing assistance</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-2 hover:bg-blue-50 border border-gray-100 group">
+                    <div class="w-16 h-16 bg-gray-700 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-200">
+                        <i class="fas fa-building text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 group-hover:text-primary transition-colors duration-200">Multiple Entity Types</h3>
+                    <p class="text-gray-600 leading-relaxed">Support for Pvt Ltd, LLP, OPC, Partnership, and Proprietorship</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Application Form -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-gray-700 to-gray-900 text-white">
+        <div class="max-w-4xl mx-auto px-5 text-center">
+            <h2 class="text-4xl font-bold text-center mb-12 text-white font-poppins relative after:content-[''] after:absolute after:bottom-[-8px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-48 after:h-0.5 after:bg-primary">
+                Ready to Launch Your <span class="text-primary">Partnership Journey?</span>
+            </h2>
+            <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+                Join 5000+ entrepreneurs who successfully registered their business with BnC Global. Get started in just 7-10 days!
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <button id="open-partner-form" class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-3">
+                    <i class="fas fa-handshake"></i>
+                    Become a Partner
+                </button>
+                <button class="bg-white hover:bg-gray-100 text-gray-800 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-3">
+                    <i class="fas fa-phone"></i>
+                    Talk to Expert
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Multi-Step Partner Form Popup -->
+    <div id="partner-form-popup" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+            <!-- Form Header -->
+            <div class="bg-gradient-to-r from-primary to-secondary text-white p-6 relative">
+                <button id="close-partner-form" class="absolute top-4 right-4 text-white/80 hover:text-white transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <h3 class="text-2xl font-bold mb-2">Partner Application</h3>
+                <p class="text-white/90">Join our growing network of partners</p>
+                
+                <!-- Progress Bar -->
+                <div class="mt-4">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span id="step-text">Step 1 of 3</span>
+                        <span id="progress-text">33%</span>
+                    </div>
+                    <div class="w-full bg-white/20 rounded-full h-2">
+                        <div id="progress-bar" class="bg-white h-2 rounded-full transition-all duration-300" style="width: 33%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Content -->
+            <div class="p-6 overflow-y-auto max-h-[60vh]">
+                <form id="multi-step-form">
+                    <!-- Step 1: Contact Information -->
+                    <div id="step-1" class="step-content">
+                        <h4 class="text-xl font-semibold mb-4 text-gray-800">Contact Information / संपर्क जानकारी</h4>
+                        <div class="mb-4">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Email / ईमेल *</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your email / अपना ईमेल दर्ज करें">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Password / पासवर्ड *</label>
+                            <input type="password" name="password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Create a password / पासवर्ड बनाएं">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number / फोन नंबर *</label>
+                            <input type="tel" name="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter phone number (min 12 digits) / फोन नंबर दर्ज करें (न्यूनतम 12 अंक)">
+                            <p class="text-xs text-gray-500 mt-1">Phone number must be at least 12 digits / फोन नंबर कम से कम 12 अंकों का होना चाहिए</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Personal Information -->
+                    <div id="step-2" class="step-content hidden">
+                        <h4 class="text-xl font-semibold mb-4 text-gray-800">Personal Information / व्यक्तिगत जानकारी</h4>
+                        <div class="mb-4">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">First Name / पहला नाम *</label>
+                            <input type="text" name="first-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your first name / अपना पहला नाम दर्ज करें">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Last Name / अंतिम नाम *</label>
+                            <input type="text" name="last-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your last name / अपना अंतिम नाम दर्ज करें">
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Location Information -->
+                    <div id="step-3" class="step-content hidden">
+                        <h4 class="text-xl font-semibold mb-4 text-gray-800">Location Information / स्थान की जानकारी</h4>
+                        <div class="mb-4">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Country / देश *</label>
+                            <select name="country" id="country-select" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="">Select Country / देश चुनें</option>
+                                <option value="India">India / भारत</option>
+                                <option value="USA">United States / संयुक्त राज्य अमेरिका</option>
+                                <option value="UK">United Kingdom / यूनाइटेड किंगडम</option>
+                                <option value="Canada">Canada / कनाडा</option>
+                                <option value="Australia">Australia / ऑस्ट्रेलिया</option>
+                                <option value="Germany">Germany / जर्मनी</option>
+                                <option value="France">France / फ्रांस</option>
+                                <option value="Japan">Japan / जापान</option>
+                                <option value="China">China / चीन</option>
+                                <option value="Singapore">Singapore / सिंगापुर</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">City / शहर *</label>
+                            <select name="city" id="city-select" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" disabled>
+                                <option value="">First select country / पहले देश चुनें</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" name="terms" required class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                                <span class="text-sm text-gray-700">I agree to the <a href="#" class="text-primary hover:underline">Terms & Conditions</a> / मैं <a href="#" class="text-primary hover:underline">नियम और शर्तों</a> से सहमत हूं</span>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Form Footer -->
+            <div class="bg-gray-50 px-6 py-4 flex justify-between items-center">
+                <button id="prev-step" class="px-6 py-2 text-gray-600 hover:text-gray-800 transition-colors hidden">
+                    <i class="fas fa-arrow-left mr-2"></i>Previous
+                </button>
+                <div class="flex gap-3">
+                    <button id="next-step" class="bg-primary hover:bg-secondary text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                    <button id="submit-form" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors hidden">
+                        Submit Application <i class="fas fa-check ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white">
+        <!-- Social Media Bar -->
+        <div class="bg-secondary py-4">
+            <div class="max-w-6xl mx-auto px-5 flex justify-center">
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-gray-100 transition-colors">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-gray-100 transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-gray-100 transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-gray-100 transition-colors">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:bg-gray-100 transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <!-- Logo and Copyright -->
+        <div class="bg-white py-12">
+            <div class="max-w-6xl mx-auto px-5 text-center">
+                <div class="mb-6">
+                    <img src="https://static.wixstatic.com/media/0446e3_fedc15f797314360941d294da192fd9e~mv2.png/v1/crop/x_0,y_112,w_500,h_276/fill/w_490,h_270,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/B.png" alt="BnC Global Services" class="mx-auto h-32 object-contain">
+                </div>
+                <p class="text-gray-600 text-sm">Copyrights © 2026 Bnc Global Pvt. Ltd.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+    <script src="auth-system.js"></script>
+    <script src="partner-form.js"></script>
+
+    <script>
+        // Sidebar Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebarMenu = document.getElementById('sidebar-menu');
+        const closeSidebar = document.getElementById('close-sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const profileSection = document.getElementById('profile-section');
+        const logoutSidebar = document.getElementById('logout-sidebar');
+        
+        // Check if user is logged in
+        function checkLoginStatus() {
+            const session = localStorage.getItem('bnc_partner_session');
+            if (session) {
+                const sessionData = JSON.parse(session);
+                if (Date.now() - sessionData.timestamp < 24 * 60 * 60 * 1000) {
+                    // User is logged in - show profile section
+                    profileSection.classList.remove('hidden');
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        // Open sidebar
+        function openSidebar() {
+            sidebarMenu.classList.remove('-translate-x-full');
+            sidebarOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close sidebar
+        function closeSidebarMenu() {
+            sidebarMenu.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Event listeners
+        mobileMenuBtn.addEventListener('click', openSidebar);
+        closeSidebar.addEventListener('click', closeSidebarMenu);
+        sidebarOverlay.addEventListener('click', closeSidebarMenu);
+        
+        // Close sidebar when clicking navigation links
+        document.querySelectorAll('#sidebar-menu a[href^="#"]').forEach(link => {
+            link.addEventListener('click', () => {
+                closeSidebarMenu();
+            });
+        });
+        
+        // Logout functionality
+        logoutSidebar.addEventListener('click', () => {
+            localStorage.removeItem('bnc_partner_session');
+            profileSection.classList.add('hidden');
+            closeSidebarMenu();
+            alert('Logged out successfully');
+        });
+        
+        // Check login status on page load
+        checkLoginStatus();
+        
+        // Active navigation highlighting
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]');
+        
+        function setActiveNav() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary', 'after:w-full');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-primary', 'after:w-full');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', setActiveNav);
+        window.addEventListener('load', setActiveNav);
+    </script>
+
+    <!-- AI Chatbot -->
+    <div id="chatbot-container" class="fixed bottom-6 right-6 z-50">
+        <!-- Chat Toggle Button -->
+        <button id="chat-toggle" class="bg-gradient-to-r from-primary to-secondary text-white w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center group">
+            <i id="chat-icon" class="fas fa-comments text-2xl group-hover:scale-110 transition-transform duration-300"></i>
+            <span id="chat-notification" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center hidden animate-pulse">1</span>
+        </button>
+
+        <!-- Chat Window -->
+        <div id="chat-window" class="absolute bottom-20 right-0 w-96 h-[500px] bg-white rounded-2xl shadow-2xl border border-gray-200 transform scale-0 origin-bottom-right transition-all duration-300 opacity-0 hidden">
+            <!-- Chat Header -->
+            <div class="bg-gradient-to-r from-primary to-secondary text-white p-4 rounded-t-2xl flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-robot text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg">BnC AI Assistant</h3>
+                        <p class="text-white/80 text-sm">Online • Ready to help</p>
+                    </div>
+                </div>
+                <button id="chat-close" class="text-white/80 hover:text-white transition-colors duration-200">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Chat Messages -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto h-80 space-y-4">
+                <!-- Welcome Message -->
+                <div class="flex items-start gap-3">
+                    <div class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-robot text-white text-sm"></i>
+                    </div>
+                    <div class="bg-gray-100 rounded-2xl rounded-tl-sm p-3 max-w-xs">
+                        <p class="text-gray-800 text-sm">Hello! I'm your BnC AI Assistant. How can I help you with partnerships, services, or any questions today?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="p-4 border-t border-gray-200">
+                <div class="flex gap-2">
+                    <input type="text" id="chat-input" placeholder="Type your message..." class="flex-1 px-4 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                    <button id="chat-send" class="bg-gradient-to-r from-primary to-secondary text-white w-12 h-12 rounded-full flex items-center justify-center hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+                        <i class="fas fa-paper-plane text-sm"></i>
+                    </button>
+                </div>
+                <div class="flex gap-2 mt-3">
+                    <button class="quick-reply bg-gray-100 hover:bg-primary hover:text-white px-3 py-2 rounded-full text-xs transition-all duration-200">Partnership Info</button>
+                    <button class="quick-reply bg-gray-100 hover:bg-primary hover:text-white px-3 py-2 rounded-full text-xs transition-all duration-200">Services</button>
+                    <button class="quick-reply bg-gray-100 hover:bg-primary hover:text-white px-3 py-2 rounded-full text-xs transition-all duration-200">Contact</button>
+                </div>
+            </div>
+
+            <!-- Typing Indicator -->
+            <div id="typing-indicator" class="hidden p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                        <i class="fas fa-robot text-white text-sm"></i>
+                    </div>
+                    <div class="bg-gray-100 rounded-2xl rounded-tl-sm p-3">
+                        <div class="flex gap-1">
+                            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot JavaScript -->
+    <script>
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const chatClose = document.getElementById('chat-close');
+        const chatInput = document.getElementById('chat-input');
+        const chatSend = document.getElementById('chat-send');
+        const chatMessages = document.getElementById('chat-messages');
+        const typingIndicator = document.getElementById('typing-indicator');
+        const quickReplies = document.querySelectorAll('.quick-reply');
+        const chatIcon = document.getElementById('chat-icon');
+        
+        let isOpen = false;
+        
+        // Your webhook URL - Replace with your actual webhook
+        const WEBHOOK_URL = 'YOUR_WEBHOOK_URL_HERE';
+        
+        // Toggle chat window
+        function toggleChat() {
+            isOpen = !isOpen;
+            if (isOpen) {
+                chatWindow.classList.remove('hidden');
+                setTimeout(() => {
+                    chatWindow.classList.remove('scale-0', 'opacity-0');
+                    chatWindow.classList.add('scale-100', 'opacity-100');
+                }, 10);
+                chatIcon.className = 'fas fa-times text-2xl group-hover:scale-110 transition-transform duration-300';
+            } else {
+                chatWindow.classList.add('scale-0', 'opacity-0');
+                chatWindow.classList.remove('scale-100', 'opacity-100');
+                setTimeout(() => {
+                    chatWindow.classList.add('hidden');
+                }, 300);
+                chatIcon.className = 'fas fa-comments text-2xl group-hover:scale-110 transition-transform duration-300';
+            }
+        }
+        
+        // Add message to chat
+        function addMessage(message, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex items-start gap-3 ${isUser ? 'flex-row-reverse' : ''}`;
+            
+            messageDiv.innerHTML = `
+                <div class="w-8 h-8 ${isUser ? 'bg-gradient-to-r from-accent to-accent-light' : 'bg-gradient-to-r from-primary to-secondary'} rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="fas ${isUser ? 'fa-user' : 'fa-robot'} text-white text-sm"></i>
+                </div>
+                <div class="${isUser ? 'bg-gradient-to-r from-primary to-secondary text-white rounded-2xl rounded-tr-sm' : 'bg-gray-100 rounded-2xl rounded-tl-sm'} p-3 max-w-xs">
+                    <p class="${isUser ? 'text-white' : 'text-gray-800'} text-sm">${message}</p>
+                </div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Show typing indicator
+        function showTyping() {
+            typingIndicator.classList.remove('hidden');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Hide typing indicator
+        function hideTyping() {
+            typingIndicator.classList.add('hidden');
+        }
+        
+        // Send message to webhook
+        async function sendToWebhook(message) {
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        timestamp: new Date().toISOString(),
+                        source: 'website_chat'
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    return data.reply || 'Thank you for your message! Our team will get back to you soon.';
+                } else {
+                    throw new Error('Webhook response not ok');
+                }
+            } catch (error) {
+                console.error('Webhook error:', error);
+                return 'I apologize, but I\'m having trouble connecting right now. Please try again later or contact us directly.';
+            }
+        }
+        
+        // Handle sending message
+        async function handleSendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, true);
+            chatInput.value = '';
+            
+            // Show typing indicator
+            showTyping();
+            
+            // Send to webhook and get response
+            const response = await sendToWebhook(message);
+            
+            // Hide typing indicator and add bot response
+            hideTyping();
+            addMessage(response);
+        }
+        
+        // Event listeners
+        chatToggle.addEventListener('click', toggleChat);
+        chatClose.addEventListener('click', toggleChat);
+        
+        chatSend.addEventListener('click', handleSendMessage);
+        
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSendMessage();
+            }
+        });
+        
+        // Quick reply buttons
+        quickReplies.forEach(button => {
+            button.addEventListener('click', () => {
+                const message = button.textContent;
+                chatInput.value = message;
+                handleSendMessage();
+            });
+        });
+        
+        // Auto-focus input when chat opens
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    if (!chatWindow.classList.contains('hidden') && !chatWindow.classList.contains('scale-0')) {
+                        setTimeout(() => chatInput.focus(), 100);
+                    }
+                }
+            });
+        });
+        
+        observer.observe(chatWindow, { attributes: true });
+    </script>
+</body>
+</html>

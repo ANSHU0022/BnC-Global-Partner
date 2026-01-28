@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - BnC Global</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2c5aa0',
+                        secondary: '#1e3d72',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-3">
+                    <img src="https://static.wixstatic.com/media/0446e3_50ff54e1251b45ef8a1066bca3a75b0e~mv2.png/v1/fill/w_256,h_256,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b%20nc%20global.png" alt="BnC Global" class="h-10 w-10">
+                    <h1 class="text-xl font-bold text-primary">Admin Dashboard</h1>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button id="ai-assistant-btn" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2">
+                        <i class="fas fa-robot"></i>AI Assistant
+                    </button>
+                    <span class="text-gray-600">Welcome, Admin!</span>
+                    <button id="logout-btn" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Stats Cards -->
+        <div class="grid md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-sm border p-6">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-users text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Total Partners</p>
+                        <p id="total-partners" class="text-2xl font-bold text-gray-800">0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-sm border p-6">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-check-circle text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Active Partners</p>
+                        <p id="active-partners" class="text-2xl font-bold text-gray-800">0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-sm border p-6">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-clock text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Pending</p>
+                        <p id="pending-partners" class="text-2xl font-bold text-gray-800">0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-sm border p-6">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-calendar text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">This Month</p>
+                        <p id="monthly-partners" class="text-2xl font-bold text-gray-800">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Partners Table -->
+        <div class="bg-white rounded-lg shadow-sm border">
+            <div class="p-6 border-b">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-bold text-gray-800">All Partners</h2>
+                    <div class="flex gap-3">
+                        <input type="text" id="search-input" placeholder="Search partners..." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <button id="refresh-btn" class="bg-primary hover:bg-secondary text-white px-4 py-2 rounded-lg font-semibold transition-colors">
+                            <i class="fas fa-refresh mr-2"></i>Refresh
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Profile ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="partners-table" class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td colspan="7" class="px-6 py-4 text-center text-gray-500">
+                                <i class="fas fa-spinner fa-spin mr-2"></i>Loading partners...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Partner Details Popup -->
+    <div id="partner-popup" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="bg-gradient-to-r from-slate-800 to-slate-600 text-white p-8 rounded-t-lg">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-2">Partner Details</h2>
+                        <p class="opacity-80">Complete partner profile and services overview</p>
+                    </div>
+                    <button onclick="closePartnerPopup()" class="text-white hover:bg-white hover:bg-opacity-20 rounded-full p-2">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="partner-details-content" class="p-0">
+                <div class="text-center py-16 text-gray-500">
+                    <i class="fas fa-spinner fa-spin text-3xl mb-4"></i>
+                    <p>Loading partner details...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth-system.js"></script>
+    <script>
+        // Check if admin is logged in
+        if (!partnerAuth.isLoggedIn() || !partnerAuth.getCurrentUser().isAdmin) {
+            window.location.href = 'login.html';
+        }
+
+        // Check AI profile status and update partner status
+        function checkAndUpdatePartnerStatus(partners) {
+            let activeCount = 0;
+            let pendingCount = 0;
+            let checkedCount = 0;
+            
+            partners.forEach((partner, index) => {
+                const scriptUrl = 'https://script.google.com/macros/s/AKfycbzMGF0qEor5ASddT7wARkqZKTMepOVaOpvAIniuFf4R1Jpajc7_553MteZGW68H3ade/exec';
+                const callbackName = 'statusCallback' + partner.profileId.replace(/[^a-zA-Z0-9]/g, '') + Date.now();
+                
+                window[callbackName] = function(result) {
+                    checkedCount++;
+                    
+                    // Update partner status based on AI profile completion
+                    if (result.success && result.hasProfile) {
+                        partner.status = 'Active';
+                        activeCount++;
+                    } else {
+                        partner.status = 'Pending';
+                        pendingCount++;
+                    }
+                    
+                    // Update the status badge in the table row
+                    const rows = document.querySelectorAll('#partners-table tr');
+                    if (rows[index]) {
+                        const statusCell = rows[index].querySelector('.status-badge');
+                        if (statusCell) {
+                            if (partner.status === 'Active') {
+                                statusCell.className = 'status-badge px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800';
+                                statusCell.textContent = 'Active';
+                            } else {
+                                statusCell.className = 'status-badge px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800';
+                                statusCell.textContent = 'Pending';
+                            }
+                        }
+                    }
+                    
+                    // Update KPI counts when all checks are done
+                    if (checkedCount === partners.length) {
+                        document.getElementById('active-partners').textContent = activeCount;
+                        document.getElementById('pending-partners').textContent = pendingCount;
+                    }
+                    
+                    delete window[callbackName];
+                    if (script.parentNode) script.parentNode.removeChild(script);
+                };
+                
+                const params = new URLSearchParams({
+                    action: 'checkAIProfile',
+                    profileId: partner.profileId,
+                    callback: callbackName
+                });
+                
+                const script = document.createElement('script');
+                script.src = `${scriptUrl}?${params}`;
+                script.onerror = function() {
+                    checkedCount++;
+                    partner.status = 'Pending';
+                    pendingCount++;
+                    
+                    if (checkedCount === partners.length) {
+                        document.getElementById('active-partners').textContent = activeCount;
+                        document.getElementById('pending-partners').textContent = pendingCount;
+                    }
+                    delete window[callbackName];
+                    if (script.parentNode) script.parentNode.removeChild(script);
+                };
+                
+                document.head.appendChild(script);
+            });
+        }
+
+        // View partner details
+        function viewPartner(profileId) {
+            document.getElementById('partner-popup').classList.remove('hidden');
+            document.getElementById('partner-popup').classList.add('flex');
+            loadPartnerDetails(profileId);
+        }
+        
+        function closePartnerPopup() {
+            document.getElementById('partner-popup').classList.add('hidden');
+            document.getElementById('partner-popup').classList.remove('flex');
+        }
+        
+        function loadPartnerDetails(profileId) {
+            const container = document.getElementById('partner-details-content');
+            container.innerHTML = `
+                <div class="text-center py-16 text-gray-500">
+                    <i class="fas fa-spinner fa-spin text-3xl mb-4"></i>
+                    <p>Loading partner details...</p>
+                </div>
+            `;
+            
+            // Use fetch with no-cors mode for better reliability
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbzMGF0qEor5ASddT7wARkqZKTMepOVaOpvAIniuFf4R1Jpajc7_553MteZGW68H3ade/exec';
+            const params = new URLSearchParams({
+                action: 'getPartnerServices',
+                profileId: profileId
+            });
+            
+            // Try direct fetch first
+            fetch(`${scriptUrl}?${params}`, {
+                method: 'GET',
+                mode: 'no-cors'
+            })
+            .then(() => {
+                // Since no-cors doesn't return data, use JSONP as fallback
+                const callbackName = 'detailsCallback' + Date.now();
+                
+                window[callbackName] = function(result) {
+                    if (result.success && result.services && result.services.length > 0) {
+                        displayPartnerDetails(result.services);
+                    } else {
+                        container.innerHTML = `
+                            <div class="text-center py-16 text-gray-500">
+                                <i class="fas fa-user-slash text-4xl mb-4"></i>
+                                <h3 class="text-xl font-semibold mb-2">No AI Profile Found</h3>
+                                <p>This partner hasn't completed their AI profile yet.</p>
+                            </div>
+                        `;
+                    }
+                    delete window[callbackName];
+                    if (script.parentNode) script.parentNode.removeChild(script);
+                };
+                
+                const script = document.createElement('script');
+                script.src = `${scriptUrl}?${params}&callback=${callbackName}`;
+                script.onerror = function() {
+                    container.innerHTML = `
+                        <div class="text-center py-16 text-red-500">
+                            <i class="fas fa-exclamation-triangle text-4xl mb-4"></i>
+                            <p>Error loading partner details</p>
+                        </div>
+                    `;
+                    delete window[callbackName];
+                    if (script.parentNode) script.parentNode.removeChild(script);
+                };
+                
+                document.head.appendChild(script);
+            })
+            .catch(() => {
+                container.innerHTML = `
+                    <div class="text-center py-16 text-red-500">
+                        <i class="fas fa-exclamation-triangle text-4xl mb-4"></i>
+                        <p>Network error loading partner details</p>
+                    </div>
+                `;
+            });
+        }
+        
+        function displayPartnerDetails(services) {
+            const container = document.getElementById('partner-details-content');
+            container.innerHTML = '';
+            
+            const mainContainer = document.createElement('div');
+            mainContainer.style.cssText = 'padding: 32px; display: flex; flex-direction: column; gap: 24px;';
+            
+            // Partner Type Card
+            const partnerTypeCard = document.createElement('div');
+            partnerTypeCard.style.cssText = `
+                background: white;
+                border: 1px solid #e2e8f0;
+                border-radius: 12px;
+                padding: 24px;
+            `;
+            
+            const partnerTypes = [...new Set(services.map(s => s.partnerType).filter(Boolean))];
+            
+            partnerTypeCard.innerHTML = `
+                <h3 style="font-size: 18px; font-weight: 600; color: #1e293b; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px;">Partner Type</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px;">
+                    ${partnerTypes.map(type => `
+                        <div style="
+                            background: #f8fafc;
+                            border: 1px solid #e2e8f0;
+                            border-radius: 8px;
+                            padding: 16px;
+                            text-align: center;
+                            transition: all 0.2s ease;
+                        ">
+                            <div style="font-size: 14px; font-weight: 600; color: #1e293b; margin-bottom: 4px;">${type}</div>
+                            <div style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Partner</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            // Service Type Card
+            const serviceTypeCard = document.createElement('div');
+            serviceTypeCard.style.cssText = `
+                background: white;
+                border: 1px solid #e2e8f0;
+                border-radius: 12px;
+                padding: 24px;
+            `;
+            
+            const allServices = [];
+            services.forEach(service => {
+                if (service.services) {
+                    const servicesList = service.services.split(',').map(s => s.trim()).filter(s => s);
+                    allServices.push(...servicesList);
+                }
+            });
+            const uniqueServices = [...new Set(allServices)];
+            
+            serviceTypeCard.innerHTML = `
+                <h3 style="font-size: 18px; font-weight: 600; color: #1e293b; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px;">Service Type</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px;">
+                    ${uniqueServices.map(service => `
+                        <div style="
+                            background: #f8fafc;
+                            border: 1px solid #e2e8f0;
+                            border-radius: 8px;
+                            padding: 16px;
+                            text-align: center;
+                            transition: all 0.2s ease;
+                        ">
+                            <div style="font-size: 14px; font-weight: 600; color: #1e293b; margin-bottom: 4px;">${service}</div>
+                            <div style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Service</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            mainContainer.appendChild(partnerTypeCard);
+            mainContainer.appendChild(serviceTypeCard);
+            container.appendChild(mainContainer);
+        }
+        function loadPartnersData() {
+            // Show loading
+            const tbody = document.getElementById('partners-table');
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="7" class="px-6 py-4 text-center text-gray-500">
+                        <i class="fas fa-spinner fa-spin mr-2"></i>Loading partners...
+                    </td>
+                </tr>
+            `;
+            
+            // Fetch data using JSONP
+            const callbackName = 'partnersCallback_' + Date.now();
+            window[callbackName] = (data) => {
+                if (data.status === 'success') {
+                    const partners = data.partners;
+                    
+                    // Check and update partner status based on AI profile completion
+                    setTimeout(() => checkAndUpdatePartnerStatus(partners), 1000);
+                    
+                    // Update stats (initial counts before AI profile check)
+                    document.getElementById('total-partners').textContent = partners.length;
+                    document.getElementById('active-partners').textContent = '0'; // Will be updated by AI check
+                    document.getElementById('pending-partners').textContent = '0'; // Will be updated by AI check
+                    
+                    // Calculate this month's partners
+                    const thisMonth = new Date().getMonth();
+                    const thisYear = new Date().getFullYear();
+                    const monthlyCount = partners.filter(p => {
+                        if (p.timestamp) {
+                            const partnerDate = new Date(p.timestamp);
+                            return partnerDate.getMonth() === thisMonth && partnerDate.getFullYear() === thisYear;
+                        }
+                        return false;
+                    }).length;
+                    document.getElementById('monthly-partners').textContent = monthlyCount;
+                    
+                    // Update table
+                    tbody.innerHTML = '';
+                    
+                    if (partners.length === 0) {
+                        tbody.innerHTML = `
+                            <tr>
+                                <td colspan="7" class="px-6 py-4 text-center text-gray-500">No partners found</td>
+                            </tr>
+                        `;
+                        return;
+                    }
+                    
+                    partners.forEach(partner => {
+                        const row = document.createElement('tr');
+                        row.className = 'hover:bg-gray-50';
+                        row.innerHTML = `
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="font-medium text-primary">${partner.profileId}</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="font-medium text-gray-900">${partner.firstName} ${partner.lastName}</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-gray-600">${partner.email}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-gray-600">${partner.phone}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-gray-600">${partner.city}, ${partner.country}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="status-badge px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">Checking...</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <button onclick="viewPartner('${partner.profileId}')" class="text-primary hover:text-secondary mr-3" title="View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-green-600 hover:text-green-800 mr-3" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="text-red-600 hover:text-red-800" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                } else {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="7" class="px-6 py-4 text-center text-red-500">
+                                Error loading partners: ${data.message}
+                            </td>
+                        </tr>
+                    `;
+                }
+                
+                // Cleanup
+                delete window[callbackName];
+                document.head.removeChild(script);
+            };
+            
+            // Create script tag for JSONP
+            const script = document.createElement('script');
+            const params = new URLSearchParams({
+                action: 'getAllPartners',
+                callback: callbackName
+            });
+            
+            // Add timestamp to prevent caching
+            const timestamp = Date.now();
+            script.src = `https://script.google.com/macros/s/AKfycbxd1-LEPTGHZ57KdkRbkjdsdC0jevBaqMVSHCR9GWKsqe_dBQg_C7x78ixz2endiDqq/exec?${params.toString()}&t=${timestamp}`;
+            
+            console.log('Fetching partners from:', script.src);
+            
+            // Handle errors
+            script.onerror = () => {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="px-6 py-4 text-center text-red-500">
+                            Network error. Please check your connection.
+                        </td>
+                    </tr>
+                `;
+                delete window[callbackName];
+                document.head.removeChild(script);
+            };
+            
+            document.head.appendChild(script);
+        }
+
+        // Event listeners
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            partnerAuth.logout();
+        });
+
+        document.getElementById('ai-assistant-btn').addEventListener('click', () => {
+            window.location.href = 'ai-assistant.html';
+        });
+
+        document.getElementById('refresh-btn').addEventListener('click', () => {
+            loadPartnersData();
+        });
+
+        // Search functionality
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#partners-table tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+
+        // Load data on page load
+        loadPartnersData();
+    </script>
+</body>
+</html>

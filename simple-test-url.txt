@@ -1,0 +1,9 @@
+SIMPLE TEST - Just open this URL in your browser:
+
+https://script.google.com/macros/s/AKfycbynHMi1PTiguM3cGpamqC_8eYeNO9Q0HVAxicgFNimtiZWaA14TJuFUtCQQfZLIvFlb/exec?action=submitPartnerService&profileId=TEST123&partnerType=service-provider&services=cyber-security&meetingDate=2024-01-20&meetingTime=10:00
+
+If it works, you'll see: {"success":true,"message":"Partner service data submitted successfully"}
+
+If it doesn't work, you'll see an error message.
+
+After opening this URL, check your Google Sheet "Partner Service" tab - you should see a new row with test data.

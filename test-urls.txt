@@ -1,0 +1,18 @@
+// Test URLs to check your Google Apps Script:
+
+// 1. Test if the script is accessible:
+https://script.google.com/macros/s/AKfycbyXueeu47d9C32ctIpaE6eN6k7DW3xN-ImAa3-hqOfET7VciFsHKRS24Etr-0cmjQVL/exec
+
+// 2. Test getAllPartners with JSONP:
+https://script.google.com/macros/s/AKfycbyXueeu47d9C32ctIpaE6eN6k7DW3xN-ImAa3-hqOfET7VciFsHKRS24Etr-0cmjQVL/exec?action=getAllPartners&callback=testCallback
+
+// 3. Simple test function for browser console:
+function testCallback(data) {
+    console.log('Partners data:', data);
+}
+
+// Instructions:
+// 1. Add the testGetAllPartners function to your Google Apps Script
+// 2. Run it to see what data is being found
+// 3. Try the test URLs in your browser
+// 4. Check browser console for any errors
