@@ -1,0 +1,1 @@
+@echo off\necho Deploying BnC Partner Portal to GitHub...\n\ngit add .\ngit commit -m \"Fix Vercel deployment issues - CSP, assets, and script loading\"\ngit push\n\necho.\necho Deployment complete! Check Vercel for auto-deployment.\necho.\npause

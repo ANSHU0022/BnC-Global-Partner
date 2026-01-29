@@ -19,14 +19,24 @@ const ENV_CONFIG = {
 // Detect environment
 const isProduction = window.location.hostname !== 'localhost' && 
                     window.location.hostname !== '127.0.0.1' &&
-                    !window.location.hostname.includes('localhost');
+                    !window.location.hostname.includes('localhost') &&
+                    !window.location.hostname.includes('192.168');
 
 const CONFIG = isProduction ? ENV_CONFIG.production : ENV_CONFIG.development;
 
 // Disable console in production
-if (!CONFIG.ENABLE_CONSOLE) {
-    console.log = console.warn = console.error = console.info = console.debug = () => {};
+if (CONFIG.DEBUG === false) {
+    const noop = () => {};
+    ['log', 'warn', 'error', 'info', 'debug'].forEach(method => {
+        console[method] = noop;
+    });
 }
 
 // Export configuration
 window.APP_CONFIG = CONFIG;
+
+// Debug info
+if (CONFIG.DEBUG) {
+    console.log('Environment:', isProduction ? 'Production' : 'Development');
+    console.log('Config loaded:', CONFIG);
+}
