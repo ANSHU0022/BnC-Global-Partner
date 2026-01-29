@@ -13,8 +13,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "helmet": "^7.0.0",
-    "rate-limiter-flexible": "^3.0.8"
+    "helmet": "^7.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.5.0",
@@ -34,6 +33,6 @@
   "author": "BnC Global",
   "license": "MIT",
   "engines": {
-    "node": ">=18.0.0"
+    "node": "18.x"
   }
 }
