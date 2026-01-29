@@ -1,17 +1,39 @@
 {
-  "name": "bnc-partner-page",
+  "name": "bnc-partner-portal",
   "version": "1.0.0",
-  "description": "BnC Global Partner Page",
+  "description": "BnC Global Partner Portal with full-stack deployment",
   "main": "index.html",
   "scripts": {
     "dev": "vite",
-    "build": "node build.js",
-    "preview": "vite preview"
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "vercel --prod",
+    "start": "node server.js"
   },
   "dependencies": {
-    "vite": "^4.4.0"
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "rate-limiter-flexible": "^3.0.8"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "@types/node": "^20.5.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.27",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9",
+    "vercel": "^32.0.0"
+  },
+  "keywords": [
+    "partner-portal",
+    "bnc-global",
+    "vercel",
+    "full-stack"
+  ],
+  "author": "BnC Global",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

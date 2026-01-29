@@ -1,0 +1,2735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner Dashboard - BnC Global</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #fafafa;
+            color: #1f2937;
+            line-height: 1.5;
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 6px;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .back-to-website {
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .back-to-website:hover {
+            color: #374151;
+        }
+        
+        .user-info {
+            font-size: 14px;
+            color: #6b7280;
+        }
+        
+        .logout-btn {
+            background: #dc2626;
+            border: 1px solid #dc2626;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .logout-btn:hover {
+            background: #b91c1c;
+            border-color: #b91c1c;
+        }
+        
+        /* Main Content */
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+        
+        /* Profile Card */
+        .profile-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .profile-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .status-badge {
+            background: #dcfce7;
+            color: #166534;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .profile-field {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .profile-field:last-child {
+            border-bottom: none;
+        }
+        
+        .field-label {
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .field-value {
+            font-size: 14px;
+            color: #111827;
+            font-weight: 500;
+        }
+        
+        .profile-id {
+            font-family: 'Monaco', 'Menlo', monospace;
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        
+        /* Action Cards */
+        .action-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .action-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 24px;
+            transition: all 0.2s;
+        }
+        
+        .action-card:hover {
+            border-color: #d1d5db;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        .ai-icon {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+        
+        .services-icon {
+            background: #f0fdf4;
+            color: #16a34a;
+        }
+        
+        .support-icon {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .card-description {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        
+        .card-button {
+            width: 100%;
+            background: #f9fafb;
+            border: 1px solid #d1d5db;
+            color: #374151;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .card-button:hover {
+            background: #f3f4f6;
+        }
+        
+        .card-button.primary {
+            background: #2563eb;
+            border-color: #2563eb;
+            color: white;
+        }
+        
+        .card-button.primary:hover {
+            background: #1d4ed8;
+        }
+        
+        /* Activity Section */
+        .activity-section {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 24px;
+        }
+        
+        .activity-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 20px;
+        }
+        
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        
+        .activity-success {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .activity-warning {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-title-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #111827;
+            margin-bottom: 2px;
+        }
+        
+        .activity-description {
+            font-size: 13px;
+            color: #6b7280;
+        }
+        
+        /* AI Interview Popup */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+        
+        .popup-overlay.active {
+            display: flex;
+        }
+        
+        .popup-content {
+            background: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 650px;
+            max-height: 90vh;
+            overflow: hidden;
+            position: relative;
+            animation: popupSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        @keyframes popupSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .popup-header {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 28px 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .popup-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+        
+        .popup-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .popup-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            font-size: 20px;
+            color: white;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+            z-index: 2;
+        }
+        
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        .popup-body {
+            padding: 32px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        
+        .company-summary {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+            position: relative;
+        }
+        
+        .company-logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .company-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+        
+        .company-description {
+            font-size: 15px;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .profile-info {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border: 2px solid #93c5fd;
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .profile-info::before {
+            content: '👤';
+            font-size: 20px;
+        }
+        
+        .profile-info-text {
+            font-size: 15px;
+            color: #1e40af;
+            font-weight: 600;
+        }
+        
+        .question-container {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        
+        .question-container.active {
+            display: block;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .question-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 24px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .question-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            border-radius: 2px;
+        }
+        
+        .question-options {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .option-item {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .option-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .option-item:hover {
+            border-color: #2563eb;
+            background: #f8fafc;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
+        }
+        
+        .option-item:hover::before {
+            left: 100%;
+        }
+        
+        .option-item.selected {
+            border-color: #2563eb;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.2);
+        }
+        
+        .option-item input[type="radio"],
+        .option-item input[type="checkbox"] {
+            margin-right: 16px;
+            transform: scale(1.2);
+            accent-color: #2563eb;
+        }
+        
+        .option-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            cursor: pointer;
+        }
+        
+        .calendar-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .date-picker {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            background: #fafafa;
+            transition: all 0.3s;
+        }
+        
+        .date-picker:hover {
+            border-color: #2563eb;
+            background: white;
+        }
+        
+        .date-picker h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .date-picker input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .date-picker input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+        
+        .time-slot {
+            padding: 12px 16px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .time-slot:hover {
+            border-color: #2563eb;
+            background: #eff6ff;
+            transform: translateY(-1px);
+        }
+        
+        .time-slot.selected {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            border-color: #2563eb;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        
+        .popup-footer {
+            padding: 24px 32px;
+            border-top: 2px solid #f3f4f6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fafafa;
+        }
+        
+        .progress-indicator {
+            font-size: 15px;
+            color: #6b7280;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .progress-indicator::before {
+            content: '📋';
+            font-size: 18px;
+        }
+        
+        .popup-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .btn-secondary {
+            background: white;
+            border: 2px solid #d1d5db;
+            color: #374151;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+            transform: translateY(-1px);
+        }
+        
+        .btn-primary {
+            background: #2563eb;
+            border: 1px solid #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background: #1d4ed8;
+            border-color: #1d4ed8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .popup-content {
+                width: 95%;
+                margin: 20px;
+            }
+        
+        .industries-container {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 8px;
+        }
+        
+        .industry-main-box {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .industry-main-box:hover {
+            border-color: #2563eb;
+            background: #f8fafc;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
+        }
+        
+        .industry-main-box.selected {
+            border-color: #2563eb;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.2);
+        }
+        
+        .industry-main-box input[type="checkbox"] {
+            transform: scale(1.2);
+            accent-color: #2563eb;
+        }
+        
+        .industry-main-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            cursor: pointer;
+        }
+        
+        .industry-sub-options {
+            margin-left: 20px;
+            margin-bottom: 16px;
+            padding-left: 20px;
+            border-left: 3px solid #e5e7eb;
+        }
+        
+        .industry-sub-item {
+            padding: 8px 12px;
+            margin-bottom: 4px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .industry-sub-item:hover {
+            background: #f3f4f6;
+        }
+        
+        .industry-sub-item input[type="checkbox"] {
+            transform: scale(1.1);
+            accent-color: #2563eb;
+        }
+        
+        .industry-sub-item span {
+            font-size: 14px;
+            color: #374151;
+            cursor: pointer;
+        }
+            
+            .popup-header {
+                padding: 24px;
+            }
+            
+            .popup-body {
+                padding: 24px;
+            }
+            
+            .popup-footer {
+                padding: 20px 24px;
+            }
+            
+            .calendar-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 16px;
+            }
+            
+            .main {
+                padding: 24px 16px;
+            }
+            
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-right {
+                gap: 12px;
+            }
+            
+            .user-info {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <img src="https://static.wixstatic.com/media/0446e3_50ff54e1251b45ef8a1066bca3a75b0e~mv2.png/v1/fill/w_256,h_256,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b%20nc%20global.png" alt="BnC Global" class="logo">
+                <h1 class="header-title">Partner Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <a href="index.html" class="back-to-website">← Back to Website</a>
+                <span id="user-info" class="user-info">Welcome, Partner</span>
+                <button id="logout-btn" class="logout-btn">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Welcome Banner -->
+        <div class="bg-white border-2 border-primary rounded-2xl p-8 mb-8 relative overflow-hidden shadow-lg">
+            <!-- Background Pattern -->
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-16 translate-x-16"></div>
+            <div class="absolute bottom-0 left-0 w-24 h-24 bg-primary/5 rounded-full translate-y-12 -translate-x-12"></div>
+            
+            <div class="relative z-10">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-3xl font-bold mb-2 text-primary">Welcome back, <span id="welcome-name" class="text-secondary">Partner</span>! 👋</h1>
+                        <p class="text-gray-600 text-lg mb-4">Ready to grow your Services with BnC Global?</p>
+                        <div class="flex items-center gap-4 text-sm">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-id-card text-primary"></i>
+                                <span class="text-gray-700">ID: <span id="welcome-profile-id" class="font-mono bg-primary/10 text-primary px-2 py-1 rounded">-</span></span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-clock text-primary"></i>
+                                <span id="current-time" class="text-gray-700">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center shadow-lg border-2 border-gray-200">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" 
+                                 alt="User Profile" 
+                                 class="w-12 h-12 object-contain">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Profile Card -->
+        <div class="profile-card">
+            <div class="profile-header">
+                <h2 class="profile-title">Partner Profile</h2>
+                <span class="status-badge">Active</span>
+            </div>
+            <div class="profile-grid">
+                <div>
+                    <div class="profile-field">
+                        <span class="field-label">Profile ID</span>
+                        <span id="profile-id" class="field-value profile-id">-</span>
+                    </div>
+                    <div class="profile-field">
+                        <span class="field-label">Partner Name</span>
+                        <span id="partner-name" class="field-value">-</span>
+                    </div>
+                    <div class="profile-field">
+                        <span class="field-label">Email Address</span>
+                        <span id="partner-email" class="field-value">-</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="profile-field">
+                        <span class="field-label">Phone Number</span>
+                        <span id="partner-phone" class="field-value">-</span>
+                    </div>
+                    <div class="profile-field">
+                        <span class="field-label">Country</span>
+                        <span id="partner-country" class="field-value">-</span>
+                    </div>
+                    <div class="profile-field">
+                        <span class="field-label">City</span>
+                        <span id="partner-city" class="field-value">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Cards -->
+        <div class="action-cards">
+            <div class="action-card">
+                <div class="card-header">
+                    <div class="card-icon ai-icon">🤖</div>
+                    <h3 class="card-title">AI Profile </h3>
+                </div>
+                <p class="card-description">Complete your partner profile with our AI-powered questionnaire system.</p>
+                <button id="start-ai-assistant" class="card-button primary">Start AI Profile</button>
+            </div>
+            
+            <div class="action-card">
+                <div class="card-header">
+                    <div class="card-icon services-icon">📋</div>
+                    <h3 class="card-title">Services</h3>
+                </div>
+                <p class="card-description">View and manage the services you provide to clients.</p>
+                <button id="view-services-btn" class="card-button">View Services</button>
+            </div>
+            
+            <div class="action-card">
+                <div class="card-header">
+                    <div class="card-icon support-icon">💬</div>
+                    <h3 class="card-title">Support</h3>
+                </div>
+                <p class="card-description">Get assistance from our dedicated partner support team.</p>
+                <button class="card-button">Contact Support</button>
+            </div>
+        </div>
+        
+        <!-- Additional Action Cards -->
+        <div class="action-cards">
+            <div class="action-card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: #f0f9ff; color: #0284c7;">🌍</div>
+                    <h3 class="card-title">International Networking</h3>
+                </div>
+                <p class="card-description">Join our global network and collaborate with international clients. Expand your business reach worldwide.</p>
+                <button class="card-button">Join Network</button>
+            </div>
+            
+            <div class="action-card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: #fef3c7; color: #d97706;">👥</div>
+                    <h3 class="card-title">Manpower Requirements</h3>
+                </div>
+                <p class="card-description">Find skilled professionals or offer your expertise to meet project requirements.</p>
+                <button class="card-button">View Opportunities</button>
+            </div>
+            
+            <div class="action-card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: #f0fdf4; color: #16a34a;">💰</div>
+                    <h3 class="card-title">Earn from Referral</h3>
+                </div>
+                <p class="card-description">Refer new partners and clients to earn attractive commissions and rewards.</p>
+                <button class="card-button" onclick="openReferralPopup()">Start Referring</button>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="activity-section">
+            <h2 class="activity-title">Recent Activity</h2>
+            <div class="activity-item">
+                <div class="activity-icon activity-success">✓</div>
+                <div class="activity-content">
+                    <div class="activity-title-text">Account Created</div>
+                    <div class="activity-description">Your partner account has been successfully created and activated</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Services Popup -->
+    <div id="services-popup" class="popup-overlay">
+        <div class="popup-content" style="max-width: 800px; max-height: 85vh; overflow-y: auto;">
+            <button class="close-btn" onclick="closeServicesPopup()">&times;</button>
+            
+            <div class="popup-header" style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%); color: white; padding: 32px;">
+                <h2 class="popup-title" style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Service Portfolio</h2>
+                <p class="popup-subtitle" style="opacity: 0.8; font-size: 16px;">Professional services and expertise overview</p>
+            </div>
+            
+            <div class="popup-body" style="padding: 0;">
+                <div id="services-loading" style="text-align: center; padding: 4rem; color: #64748b;">
+                    <div style="width: 40px; height: 40px; border: 3px solid #e2e8f0; border-top: 3px solid #3b82f6; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px;"></div>
+                    <p style="font-size: 16px; font-weight: 500;">Loading services...</p>
+                </div>
+                
+                <div id="services-content" style="display: none;">
+                    <!-- Services will be loaded here -->
+                </div>
+                
+                <div id="no-services-found" style="display: none; text-align: center; padding: 4rem; color: #64748b;">
+                    <div style="width: 80px; height: 80px; background: #f1f5f9; border-radius: 50%; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; font-size: 32px; color: #94a3b8;">—</div>
+                    <h3 style="font-size: 20px; font-weight: 600; color: #1e293b; margin-bottom: 12px;">No Services Registered</h3>
+                    <p style="font-size: 15px; max-width: 400px; margin: 0 auto; line-height: 1.6;">Complete your AI Profile assessment to register your professional services and showcase your expertise to potential clients.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+    <!-- Referral Popup -->
+    <div id="referral-popup" class="popup-overlay">
+        <div class="popup-content" style="max-width: 500px;">
+            <button class="close-btn" onclick="closeReferralPopup()">&times;</button>
+            
+            <div class="popup-header">
+                <h2 class="popup-title">Start Referring</h2>
+                <p class="popup-subtitle">Choose your referral type</p>
+            </div>
+            
+            <div class="popup-body">
+                <div class="question-options">
+                    <label class="option-item" onclick="selectReferralType('client')">
+                        <input type="radio" name="referral-type" value="client">
+                        <span class="option-label">Refer a Client</span>
+                    </label>
+                    <label class="option-item" onclick="selectReferralType('candidate')">
+                        <input type="radio" name="referral-type" value="candidate">
+                        <span class="option-label">Refer a Candidate</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="popup-footer">
+                <div class="popup-buttons">
+                    <button class="btn-secondary" onclick="closeReferralPopup()">Cancel</button>
+                    <button id="referral-proceed-btn" class="btn-primary" onclick="proceedReferral()" disabled>Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ai-popup" class="popup-overlay">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closeAIPopup()">&times;</button>
+            
+            <div class="popup-header">
+                <h2 class="popup-title">AI Partner Profile</h2>
+                <p class="popup-subtitle">Help us understand your partnership preferences</p>
+            </div>
+            
+            <div class="popup-body">
+                <!-- Company Summary - Only show in Question 1 -->
+                <div id="company-intro" class="company-summary" style="display: none;">
+                    <h3 class="company-name">BnC Global</h3>
+                    <p class="company-description">
+                        BnC Global is a leading professional services firm specializing in business consulting, compliance, and advisory services. We help organizations navigate complex regulatory environments and achieve sustainable growth through strategic partnerships.
+                    </p>
+                    <div class="profile-info">
+                        <span class="profile-info-text">
+                            <strong>Your Profile ID:</strong> <span id="popup-profile-id">-</span> | 
+                            <strong>Name:</strong> <span id="popup-partner-name">-</span>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Question 1 -->
+                <div id="question-1" class="question-container">
+                    <h3 class="question-title">Which type of partner you want to become?</h3>
+                    <div class="question-options">
+                        <label class="option-item" onclick="selectOption(1, 'service-provider')">
+                            <input type="radio" name="partner-type" value="service-provider">
+                            <span class="option-label">Service Provider </span>
+                        </label>
+                        <label class="option-item" onclick="selectOption(1, 'service-consumer')">
+                            <input type="radio" name="partner-type" value="service-consumer">
+                            <span class="option-label">Service Consumer </span>
+                        </label>
+                        <label class="option-item" onclick="selectOption(1, 'both')">
+                            <input type="radio" name="partner-type" value="both">
+                            <span class="option-label">Both</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Question 2 -->
+                <div id="question-2" class="question-container">
+                    <h3 class="question-title">What type of services you are interested in?</h3>
+                    <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">(You can select multiple options)</p>
+                    <div class="question-options">
+                        <label class="option-item" onclick="toggleService('cyber-security')">
+                            <input type="checkbox" name="services" value="cyber-security">
+                            <span class="option-label">Cyber Security</span>
+                        </label>
+                        <label class="option-item" onclick="toggleService('data-privacy')">
+                            <input type="checkbox" name="services" value="data-privacy">
+                            <span class="option-label">Data Privacy</span>
+                        </label>
+                        <label class="option-item" onclick="toggleService('internal-audit')">
+                            <input type="checkbox" name="services" value="internal-audit">
+                            <span class="option-label">Internal Audit</span>
+                        </label>
+                        <label class="option-item" onclick="toggleService('sop')">
+                            <input type="checkbox" name="services" value="sop">
+                            <span class="option-label">SOP</span>
+                        </label>
+                        <label class="option-item" onclick="toggleService('esg')">
+                            <input type="checkbox" name="services" value="esg">
+                            <span class="option-label">ESG</span>
+                        </label>
+                        <label class="option-item" onclick="toggleService('ifrs')">
+                            <input type="checkbox" name="services" value="ifrs">
+                            <span class="option-label">IFRS</span>
+                        </label>
+                        <label class="option-item" onclick="toggleService('finance-advisory')">
+                            <input type="checkbox" name="services" value="finance-advisory">
+                            <span class="option-label">Finance Advisory</span>
+                        </label>
+                        <label class="option-item" onclick="toggleService('finance-tax-compliance')">
+                            <input type="checkbox" name="services" value="finance-tax-compliance">
+                            <span class="option-label">Finance and Tax Compliance</span>
+                        </label>
+                        <label class="option-item" onclick="toggleService('manpower-requirement')">
+                            <input type="checkbox" name="services" value="manpower-requirement">
+                            <span class="option-label">Manpower Requirement</span>
+                        </label>
+                        <label class="option-item" onclick="toggleService('valuation')">
+                            <input type="checkbox" name="services" value="valuation">
+                            <span class="option-label">Valuation</span>
+                        </label>
+                        <label class="option-item" onclick="toggleService('virtual-cfso')">
+                            <input type="checkbox" name="services" value="virtual-cfso">
+                            <span class="option-label">Virtual CFO</span>
+                        </label>
+                        <label class="option-item" onclick="toggleService('training-provider')">
+                            <input type="checkbox" name="services" value="training-provider">
+                            <span class="option-label">Training Provider</span>
+                        </label>
+                         <label class="option-item" onclick="toggleService('training-provider')">
+                            <input type="checkbox" name="services" value="training-provider">
+                            <span class="option-label">Other</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Question 3 -->
+                <div id="question-3" class="question-container">
+                    <h3 class="question-title">Which industries do you work with for this service/solution?</h3>
+                    <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">(You can select multiple options)</p>
+                    <div class="question-options">
+                        <!-- Public Services -->
+                        <label class="option-item" onclick="toggleMainIndustry('public-services')">
+                            <input type="checkbox" name="main-industries" value="public-services">
+                            <span class="option-label">Public Services</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-public-services" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('ministries')">
+                                <input type="checkbox" name="industries" value="ministries">
+                                <span>Ministries</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('semi-government')">
+                                <input type="checkbox" name="industries" value="semi-government">
+                                <span>Semi-government</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('justice')">
+                                <input type="checkbox" name="industries" value="justice">
+                                <span>Justice</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('science')">
+                                <input type="checkbox" name="industries" value="science">
+                                <span>Science</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('special-economic-zones')">
+                                <input type="checkbox" name="industries" value="special-economic-zones">
+                                <span>Special Economic Zones</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('free-zone-authorities')">
+                                <input type="checkbox" name="industries" value="free-zone-authorities">
+                                <span>Free Zone Authorities</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('financial-centers')">
+                                <input type="checkbox" name="industries" value="financial-centers">
+                                <span>Financial Centers</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Healthcare -->
+                        <label class="option-item" onclick="toggleMainIndustry('healthcare')">
+                            <input type="checkbox" name="main-industries" value="healthcare">
+                            <span class="option-label">Healthcare</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-healthcare" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('healthcare-providers')">
+                                <input type="checkbox" name="industries" value="healthcare-providers">
+                                <span>Healthcare Providers & Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('healthcare-equipment')">
+                                <input type="checkbox" name="industries" value="healthcare-equipment">
+                                <span>Healthcare Equipment & Supplies</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('biotechnology')">
+                                <input type="checkbox" name="industries" value="biotechnology">
+                                <span>Biotechnology & Life Sciences</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('pharmaceuticals')">
+                                <input type="checkbox" name="industries" value="pharmaceuticals">
+                                <span>Pharmaceuticals</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Real Estate & Construction -->
+                        <label class="option-item" onclick="toggleMainIndustry('real-estate')">
+                            <input type="checkbox" name="main-industries" value="real-estate">
+                            <span class="option-label">Real Estate & Construction</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-real-estate" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('real-estate-investment')">
+                                <input type="checkbox" name="industries" value="real-estate-investment">
+                                <span>Real Estate Investment</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('infrastructure-development')">
+                                <input type="checkbox" name="industries" value="infrastructure-development">
+                                <span>Infrastructure Development</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('construction-engineering')">
+                                <input type="checkbox" name="industries" value="construction-engineering">
+                                <span>Construction & Engineering</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Education -->
+                        <label class="option-item" onclick="toggleMainIndustry('education')">
+                            <input type="checkbox" name="main-industries" value="education">
+                            <span class="option-label">Education</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-education" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('public-private-schools')">
+                                <input type="checkbox" name="industries" value="public-private-schools">
+                                <span>Public & Private Schools</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('universities')">
+                                <input type="checkbox" name="industries" value="universities">
+                                <span>Universities</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('vocational-institutes')">
+                                <input type="checkbox" name="industries" value="vocational-institutes">
+                                <span>Skilling and Vocational Institutes</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('education-technology')">
+                                <input type="checkbox" name="industries" value="education-technology">
+                                <span>Education Technology</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('libraries')">
+                                <input type="checkbox" name="industries" value="libraries">
+                                <span>Libraries</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Finance -->
+                        <label class="option-item" onclick="toggleMainIndustry('finance')">
+                            <input type="checkbox" name="main-industries" value="finance">
+                            <span class="option-label">Finance</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-finance" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('banking')">
+                                <input type="checkbox" name="industries" value="banking">
+                                <span>Banking</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('consumer-financial-services')">
+                                <input type="checkbox" name="industries" value="consumer-financial-services">
+                                <span>Consumer Financial Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('microfinance')">
+                                <input type="checkbox" name="industries" value="microfinance">
+                                <span>Microfinance</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('insurance')">
+                                <input type="checkbox" name="industries" value="insurance">
+                                <span>Insurance</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('private-equity')">
+                                <input type="checkbox" name="industries" value="private-equity">
+                                <span>Private Equity</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('capital-markets')">
+                                <input type="checkbox" name="industries" value="capital-markets">
+                                <span>Capital Markets</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('sovereign-wealth-funds')">
+                                <input type="checkbox" name="industries" value="sovereign-wealth-funds">
+                                <span>Sovereign Wealth Funds</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('investment-wealth-management')">
+                                <input type="checkbox" name="industries" value="investment-wealth-management">
+                                <span>Investment & Wealth Management</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Retail -->
+                        <label class="option-item" onclick="toggleMainIndustry('retail')">
+                            <input type="checkbox" name="main-industries" value="retail">
+                            <span class="option-label">Retail</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-retail" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('consumer-electronics')">
+                                <input type="checkbox" name="industries" value="consumer-electronics">
+                                <span>Consumer Electronics & Appliances</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('textiles-apparel')">
+                                <input type="checkbox" name="industries" value="textiles-apparel">
+                                <span>Textiles & Apparel</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('accessories-luxury-goods')">
+                                <input type="checkbox" name="industries" value="accessories-luxury-goods">
+                                <span>Accessories & Luxury Goods</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('food-beverage')">
+                                <input type="checkbox" name="industries" value="food-beverage">
+                                <span>Food & Beverage</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('household-personal-products')">
+                                <input type="checkbox" name="industries" value="household-personal-products">
+                                <span>Household & Personal Products</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('stores')">
+                                <input type="checkbox" name="industries" value="stores">
+                                <span>Stores</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('trading-distribution')">
+                                <input type="checkbox" name="industries" value="trading-distribution">
+                                <span>Trading & Distribution</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('automotive')">
+                                <input type="checkbox" name="industries" value="automotive">
+                                <span>Automotive</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Social -->
+                        <label class="option-item" onclick="toggleMainIndustry('social')">
+                            <input type="checkbox" name="main-industries" value="social">
+                            <span class="option-label">Social</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-social" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('ngo')">
+                                <input type="checkbox" name="industries" value="ngo">
+                                <span>NGO</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('intergovernmental-organizations')">
+                                <input type="checkbox" name="industries" value="intergovernmental-organizations">
+                                <span>Intergovernmental Organizations</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('social-enterprises')">
+                                <input type="checkbox" name="industries" value="social-enterprises">
+                                <span>Social Enterprises</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('credit-unions')">
+                                <input type="checkbox" name="industries" value="credit-unions">
+                                <span>Credit Unions</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('co-operatives')">
+                                <input type="checkbox" name="industries" value="co-operatives">
+                                <span>Co-operatives</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('community-enterprises')">
+                                <input type="checkbox" name="industries" value="community-enterprises">
+                                <span>Community Enterprises</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('fair-trade-organizations')">
+                                <input type="checkbox" name="industries" value="fair-trade-organizations">
+                                <span>Fair Trade Organizations</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Leisure -->
+                        <label class="option-item" onclick="toggleMainIndustry('leisure')">
+                            <input type="checkbox" name="main-industries" value="leisure">
+                            <span class="option-label">Leisure</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-leisure" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('hotels')">
+                                <input type="checkbox" name="industries" value="hotels">
+                                <span>Hotels</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('resorts-cruise-lines')">
+                                <input type="checkbox" name="industries" value="resorts-cruise-lines">
+                                <span>Resorts & Cruise Lines</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('restaurants-catering-services')">
+                                <input type="checkbox" name="industries" value="restaurants-catering-services">
+                                <span>Restaurants & Catering Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('tourism')">
+                                <input type="checkbox" name="industries" value="tourism">
+                                <span>Tourism</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('leisure-recreation')">
+                                <input type="checkbox" name="industries" value="leisure-recreation">
+                                <span>Leisure & Recreation</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('event-management')">
+                                <input type="checkbox" name="industries" value="event-management">
+                                <span>Event Management</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('sporting')">
+                                <input type="checkbox" name="industries" value="sporting">
+                                <span>Sporting</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Materials -->
+                        <label class="option-item" onclick="toggleMainIndustry('materials')">
+                            <input type="checkbox" name="main-industries" value="materials">
+                            <span class="option-label">Materials</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-materials" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('paper-forest-products')">
+                                <input type="checkbox" name="industries" value="paper-forest-products">
+                                <span>Paper & Forest Products</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('precious-metals')">
+                                <input type="checkbox" name="industries" value="precious-metals">
+                                <span>Precious Metals</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('industrial-metals')">
+                                <input type="checkbox" name="industries" value="industrial-metals">
+                                <span>Industrial Metals</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('chemicals')">
+                                <input type="checkbox" name="industries" value="chemicals">
+                                <span>Chemicals</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('plastics')">
+                                <input type="checkbox" name="industries" value="plastics">
+                                <span>Plastics</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('specialty-mining-metals')">
+                                <input type="checkbox" name="industries" value="specialty-mining-metals">
+                                <span>Specialty Mining & Metals</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('mining-support-services')">
+                                <input type="checkbox" name="industries" value="mining-support-services">
+                                <span>Mining Support Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('equipment')">
+                                <input type="checkbox" name="industries" value="equipment">
+                                <span>& Equipment</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('construction-materials')">
+                                <input type="checkbox" name="industries" value="construction-materials">
+                                <span>Construction Materials</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('primary-resources')">
+                                <input type="checkbox" name="industries" value="primary-resources">
+                                <span>Primary Resources</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Energy -->
+                        <label class="option-item" onclick="toggleMainIndustry('energy')">
+                            <input type="checkbox" name="main-industries" value="energy">
+                            <span class="option-label">Energy</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-energy" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('exploration-production-upstream')">
+                                <input type="checkbox" name="industries" value="exploration-production-upstream">
+                                <span>Exploration & Production (Upstream)</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('refining-marketing-downstream')">
+                                <input type="checkbox" name="industries" value="refining-marketing-downstream">
+                                <span>Refining & Marketing (Downstream)</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('storage-transportation-midstream')">
+                                <input type="checkbox" name="industries" value="storage-transportation-midstream">
+                                <span>Storage & Transportation (Midstream)</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('equipment-services')">
+                                <input type="checkbox" name="industries" value="equipment-services">
+                                <span>Equipment & Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('coal')">
+                                <input type="checkbox" name="industries" value="coal">
+                                <span>Coal</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('natural-gas')">
+                                <input type="checkbox" name="industries" value="natural-gas">
+                                <span>Natural Gas</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('nuclear-energy')">
+                                <input type="checkbox" name="industries" value="nuclear-energy">
+                                <span>Nuclear Energy</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('utilities')">
+                                <input type="checkbox" name="industries" value="utilities">
+                                <span>Utilities</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('renewable-energy')">
+                                <input type="checkbox" name="industries" value="renewable-energy">
+                                <span>Renewable Energy</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Industrial -->
+                        <label class="option-item" onclick="toggleMainIndustry('industrial')">
+                            <input type="checkbox" name="main-industries" value="industrial">
+                            <span class="option-label">Industrial</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-industrial" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('aerospace')">
+                                <input type="checkbox" name="industries" value="aerospace">
+                                <span>Aerospace</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('defense')">
+                                <input type="checkbox" name="industries" value="defense">
+                                <span>Defense</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('electrical-components-equipment')">
+                                <input type="checkbox" name="industries" value="electrical-components-equipment">
+                                <span>Electrical Components & Equipment</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('industrial-conglomerates')">
+                                <input type="checkbox" name="industries" value="industrial-conglomerates">
+                                <span>Industrial Conglomerates</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('construction-machinery-heavy-trucks')">
+                                <input type="checkbox" name="industries" value="construction-machinery-heavy-trucks">
+                                <span>Construction Machinery & Heavy Trucks</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('shipbuilding')">
+                                <input type="checkbox" name="industries" value="shipbuilding">
+                                <span>Shipbuilding</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('agricultural-farm-machinery')">
+                                <input type="checkbox" name="industries" value="agricultural-farm-machinery">
+                                <span>Agricultural & Farm Machinery</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('industrial-machinery')">
+                                <input type="checkbox" name="industries" value="industrial-machinery">
+                                <span>Industrial Machinery</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Technology -->
+                        <label class="option-item" onclick="toggleMainIndustry('technology')">
+                            <input type="checkbox" name="main-industries" value="technology">
+                            <span class="option-label">Technology</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-technology" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('telecom-services')">
+                                <input type="checkbox" name="industries" value="telecom-services">
+                                <span>Telecom Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('communication-equipment')">
+                                <input type="checkbox" name="industries" value="communication-equipment">
+                                <span>Communication Equipment</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('semiconductors')">
+                                <input type="checkbox" name="industries" value="semiconductors">
+                                <span>Semiconductors</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('software')">
+                                <input type="checkbox" name="industries" value="software">
+                                <span>Software</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('internet-ecommerce')">
+                                <input type="checkbox" name="industries" value="internet-ecommerce">
+                                <span>Internet & Ecommerce</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('it-consulting-services')">
+                                <input type="checkbox" name="industries" value="it-consulting-services">
+                                <span>IT Consulting & Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('hardware-equipment')">
+                                <input type="checkbox" name="industries" value="hardware-equipment">
+                                <span>Hardware & Equipment</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Media -->
+                        <label class="option-item" onclick="toggleMainIndustry('media')">
+                            <input type="checkbox" name="main-industries" value="media">
+                            <span class="option-label">Media</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-media" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('advertising')">
+                                <input type="checkbox" name="industries" value="advertising">
+                                <span>Advertising</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('broadcasting')">
+                                <input type="checkbox" name="industries" value="broadcasting">
+                                <span>Broadcasting</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('digital')">
+                                <input type="checkbox" name="industries" value="digital">
+                                <span>Digital</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('cable-satellite')">
+                                <input type="checkbox" name="industries" value="cable-satellite">
+                                <span>Cable & Satellite</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('entertainment')">
+                                <input type="checkbox" name="industries" value="entertainment">
+                                <span>Entertainment</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('publishing')">
+                                <input type="checkbox" name="industries" value="publishing">
+                                <span>Publishing</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Transport -->
+                        <label class="option-item" onclick="toggleMainIndustry('transport')">
+                            <input type="checkbox" name="main-industries" value="transport">
+                            <span class="option-label">Transport</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-transport" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('logistics')">
+                                <input type="checkbox" name="industries" value="logistics">
+                                <span>Logistics</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('airlines')">
+                                <input type="checkbox" name="industries" value="airlines">
+                                <span>Airlines</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('marine')">
+                                <input type="checkbox" name="industries" value="marine">
+                                <span>Marine</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('road-rail')">
+                                <input type="checkbox" name="industries" value="road-rail">
+                                <span>Road & Rail</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('leasing-rental')">
+                                <input type="checkbox" name="industries" value="leasing-rental">
+                                <span>Leasing & Rental</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('infrastructure')">
+                                <input type="checkbox" name="industries" value="infrastructure">
+                                <span>Infrastructure</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Business Services -->
+                        <label class="option-item" onclick="toggleMainIndustry('business-services')">
+                            <input type="checkbox" name="main-industries" value="business-services">
+                            <span class="option-label">Business Services</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-business-services" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('employment-services')">
+                                <input type="checkbox" name="industries" value="employment-services">
+                                <span>Employment Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('business-support')">
+                                <input type="checkbox" name="industries" value="business-support">
+                                <span>Business Support</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('consulting')">
+                                <input type="checkbox" name="industries" value="consulting">
+                                <span>Consulting</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('research')">
+                                <input type="checkbox" name="industries" value="research">
+                                <span>Research</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('assurance')">
+                                <input type="checkbox" name="industries" value="assurance">
+                                <span>Assurance</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 4 -->
+                <div id="question-4" class="question-container">
+                    <h3 class="question-title">In which industry do you have experience?</h3>
+                    <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">(Select your primary industry experience)</p>
+                    <div class="question-options">
+                        <label class="option-item" onclick="selectExperienceIndustry('public-services')">
+                            <input type="radio" name="experience-industry" value="public-services">
+                            <span class="option-label">Public Services</span>
+                        </label>
+                        <label class="option-item" onclick="selectExperienceIndustry('healthcare')">
+                            <input type="radio" name="experience-industry" value="healthcare">
+                            <span class="option-label">Healthcare</span>
+                        </label>
+                        <label class="option-item" onclick="selectExperienceIndustry('finance')">
+                            <input type="radio" name="experience-industry" value="finance">
+                            <span class="option-label">Finance</span>
+                        </label>
+                        <label class="option-item" onclick="selectExperienceIndustry('technology')">
+                            <input type="radio" name="experience-industry" value="technology">
+                            <span class="option-label">Technology</span>
+                        </label>
+                        <label class="option-item" onclick="selectExperienceIndustry('education')">
+                            <input type="radio" name="experience-industry" value="education">
+                            <span class="option-label">Education</span>
+                        </label>
+                        <label class="option-item" onclick="selectExperienceIndustry('retail')">
+                            <input type="radio" name="experience-industry" value="retail">
+                            <span class="option-label">Retail</span>
+                        </label>
+                        <label class="option-item" onclick="selectExperienceIndustry('other')">
+                            <input type="radio" name="experience-industry" value="other">
+                            <span class="option-label">Other</span>
+                        </label>
+                    </div>
+                    
+                    <h4 style="font-size: 18px; font-weight: 600; color: #111827; margin: 24px 0 16px 0; position: relative; padding-left: 20px;">How many years of experience?
+                        <span style="content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 24px; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-radius: 2px;"></span>
+                    </h4>
+                    <select id="experience-years" onchange="updateExperienceYears()" style="width: 100%; padding: 12px 16px; border: 2px solid #d1d5db; border-radius: 8px; font-size: 15px; font-weight: 500; margin-bottom: 24px;">
+                        <option value="">Select years of experience</option>
+                        <option value="1">1 year</option>
+                        <option value="2">2 years</option>
+                        <option value="3">3 years</option>
+                        <option value="4">4 years</option>
+                        <option value="5">5 years</option>
+                        <option value="6">6 years</option>
+                        <option value="7">7 years</option>
+                        <option value="8">8 years</option>
+                        <option value="9">9 years</option>
+                        <option value="10">10 years</option>
+                        <option value="11">11 years</option>
+                        <option value="12">12 years</option>
+                        <option value="13">13 years</option>
+                        <option value="14">14 years</option>
+                        <option value="15">15 years</option>
+                        <option value="16">16 years</option>
+                        <option value="17">17 years</option>
+                        <option value="18">18 years</option>
+                        <option value="19">19 years</option>
+                        <option value="20">20+ years</option>
+                    </select>
+                    
+                    <h4 style="font-size: 18px; font-weight: 600; color: #111827; margin: 24px 0 16px 0; position: relative; padding-left: 20px;">You work for Organisation or Individual?
+                        <span style="content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 24px; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-radius: 2px;"></span>
+                    </h4>
+                    <div class="question-options">
+                        <label class="option-item" onclick="selectWorkType('organisation')">
+                            <input type="radio" name="work-type" value="organisation">
+                            <span class="option-label">Organisation</span>
+                        </label>
+                        <label class="option-item" onclick="selectWorkType('individual')">
+                            <input type="radio" name="work-type" value="individual">
+                            <span class="option-label">Individual</span>
+                        </label>
+                    </div>
+                    
+                    <div id="organisation-field" style="display: none; margin-top: 16px;">
+                        <label style="font-size: 14px; font-weight: 500; color: #374151; margin-bottom: 8px; display: block;">Organisation Name</label>
+                        <input type="text" id="organisation-name" placeholder="Enter organisation name" onchange="updateOrganisationName()" style="width: 100%; padding: 12px 16px; border: 2px solid #d1d5db; border-radius: 8px; font-size: 15px; font-weight: 500;">
+                    </div>
+                </div>
+                
+                <!-- Question 5 -->
+                <div id="question-5" class="question-container">
+                    <h3 class="question-title">When should our team connect with you?</h3>
+                    <div class="calendar-container">
+                        <div class="date-picker">
+                            <h4>📅 Select Date</h4>
+                            <input type="date" id="meeting-date" min="" onchange="updateTimeSlots()">
+                        </div>
+                        <div class="date-picker">
+                            <h4>🕐 Select Time</h4>
+                            <div class="time-slots" id="time-slots">
+                                <div class="time-slot" onclick="selectTime('10:30')">10:30 AM</div>
+                                <div class="time-slot" onclick="selectTime('11:00')">11:00 AM</div>
+                                <div class="time-slot" onclick="selectTime('12:00')">12:00 PM</div>
+                                <div class="time-slot" onclick="selectTime('13:00')">01:00 PM</div>
+                                <div class="time-slot" onclick="selectTime('14:00')">02:00 PM</div>
+                                <div class="time-slot" onclick="selectTime('15:00')">03:00 PM</div>
+                                <div class="time-slot" onclick="selectTime('16:00')">04:00 PM</div>
+                                <div class="time-slot" onclick="selectTime('17:00')">05:00 PM</div>
+                                <div class="time-slot" onclick="selectTime('18:00')">06:00 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="popup-footer">
+                <div class="progress-indicator">
+                    <span id="progress-text">Step 1 of 4</span>
+                </div>
+                <div class="popup-buttons">
+                    <button id="prev-btn" class="btn-secondary" onclick="previousQuestion()" style="display: none;">Previous</button>
+                    <button id="next-btn" class="btn-primary" onclick="nextQuestion()" disabled>Next</button>
+                    <button id="submit-btn" class="btn-primary" onclick="submitInterview()" style="display: none;">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/config.js"></script>
+    <script src="/security.js"></script>
+    <script src="/auth-system.js"></script>
+    <script>
+        // Toggle main industry option
+        function toggleMainIndustry(category) {
+            const mainOption = document.querySelector(`input[value="${category}"]`);
+            const optionItem = mainOption.closest('.option-item');
+            const subOptions = document.getElementById(`sub-${category}`);
+            
+            if (mainOption.checked) {
+                // Uncheck main option
+                mainOption.checked = false;
+                optionItem.classList.remove('selected');
+                subOptions.style.display = 'none';
+                
+                // Uncheck all sub-options
+                subOptions.querySelectorAll('input[type="checkbox"]').forEach(input => {
+                    input.checked = false;
+                    const index = interviewData.industries.indexOf(input.value);
+                    if (index > -1) {
+                        interviewData.industries.splice(index, 1);
+                    }
+                });
+            } else {
+                // Check main option and show sub-options
+                mainOption.checked = true;
+                optionItem.classList.add('selected');
+                subOptions.style.display = 'block';
+            }
+            
+            checkQuestion3Validity();
+        }
+        
+        // Toggle sub industry option
+        function toggleSubIndustry(value) {
+            const input = document.querySelector(`input[value="${value}"]`);
+            
+            if (input.checked) {
+                input.checked = false;
+                const index = interviewData.industries.indexOf(value);
+                if (index > -1) {
+                    interviewData.industries.splice(index, 1);
+                }
+            } else {
+                input.checked = true;
+                if (!interviewData.industries.includes(value)) {
+                    interviewData.industries.push(value);
+                }
+            }
+            
+            checkQuestion3Validity();
+        }
+        
+        // Check if at least one industry is selected
+        function checkQuestion3Validity() {
+            const selectedIndustries = document.querySelectorAll('input[name="industries"]:checked');
+            const nextBtn = document.getElementById('next-btn');
+            
+            if (currentQuestion === 3) {
+                if (selectedIndustries.length > 0) {
+                    nextBtn.disabled = false;
+                    nextBtn.style.opacity = '1';
+                } else {
+                    nextBtn.disabled = true;
+                    nextBtn.style.opacity = '0.5';
+                }
+            }
+        }
+        
+        function checkQuestion1Validity() {
+            const nextBtn = document.getElementById('next-btn');
+            if (currentQuestion === 1) {
+                const isValid = interviewData.partnerType !== '';
+                nextBtn.disabled = !isValid;
+                nextBtn.style.opacity = isValid ? '1' : '0.5';
+            }
+        }
+        
+        function checkQuestion2Validity() {
+            const nextBtn = document.getElementById('next-btn');
+            if (currentQuestion === 2) {
+                const isValid = interviewData.services.length > 0;
+                nextBtn.disabled = !isValid;
+                nextBtn.style.opacity = isValid ? '1' : '0.5';
+            }
+        }
+        
+        // Check if meeting date and time are selected (Question 5)
+        function checkQuestion5Validity() {
+            const submitBtn = document.getElementById('submit-btn');
+            
+            if (selectedDate && selectedTime) {
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.5';
+            }
+        }
+        
+        // Check if user has already completed AI profiling
+        function checkAIProfileStatus() {
+            const user = partnerAuth.getCurrentUser();
+            if (!user) return;
+            
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbwC1fvd5mHB_05kYaibR2JPxBFpzwFw-8n-bBFlL0ms8aYPjJS85QIpwLGPQQzKGldZ/exec';
+            const callbackName = 'checkCallback' + Date.now();
+            
+            window[callbackName] = function(result) {
+                console.log('AI Profile Check Result:', result);
+                if (result.success && result.hasProfile) {
+                    // User has already completed AI profiling
+                    const startBtn = document.getElementById('start-ai-assistant');
+                    startBtn.textContent = 'AI Profile Completed ✓';
+                    startBtn.disabled = true;
+                    startBtn.style.background = '#10b981';
+                    startBtn.style.cursor = 'not-allowed';
+                    startBtn.style.opacity = '0.7';
+                    
+                    // Update activity section
+                    const activitySection = document.querySelector('.activity-section');
+                    const completedActivity = document.createElement('div');
+                    completedActivity.className = 'activity-item';
+                    completedActivity.innerHTML = `
+                        <div class="activity-icon activity-success">✓</div>
+                        <div class="activity-content">
+                            <div class="activity-title-text">AI Profile Completed</div>
+                            <div class="activity-description">Your AI partner profile has been completed successfully</div>
+                        </div>
+                    `;
+                    const activityTitle = activitySection.querySelector('.activity-title');
+                    activityTitle.insertAdjacentElement('afterend', completedActivity);
+                }
+                delete window[callbackName];
+                if (script.parentNode) script.parentNode.removeChild(script);
+            };
+            
+            const params = new URLSearchParams({
+                action: 'checkAIProfile',
+                profileId: user.profileId,
+                callback: callbackName
+            });
+            
+            const script = document.createElement('script');
+            script.src = `${scriptUrl}?${params}`;
+            script.onerror = function() {
+                delete window[callbackName];
+                if (script.parentNode) script.parentNode.removeChild(script);
+            };
+            
+            document.head.appendChild(script);
+        }
+        if (!partnerAuth.isLoggedIn()) {
+            window.location.href = 'login.html';
+        }
+
+        // Load user data
+        const user = partnerAuth.getCurrentUser();
+        if (user) {
+            // Update welcome banner
+            document.getElementById('welcome-name').textContent = user.firstName || 'Partner';
+            document.getElementById('welcome-profile-id').textContent = user.profileId || '-';
+            
+            // Update current time
+            function updateTime() {
+                const now = new Date();
+                const timeString = now.toLocaleString('en-US', {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                document.getElementById('current-time').textContent = timeString;
+            }
+            updateTime();
+            setInterval(updateTime, 60000); // Update every minute
+            
+            // Update header and profile sections
+            document.getElementById('user-info').textContent = `Welcome, ${user.firstName}`;
+            document.getElementById('profile-id').textContent = user.profileId;
+            document.getElementById('partner-name').textContent = `${user.firstName} ${user.lastName}`;
+            document.getElementById('partner-email').textContent = user.email;
+            document.getElementById('partner-phone').textContent = user.phone;
+            document.getElementById('partner-country').textContent = user.country;
+            document.getElementById('partner-city').textContent = user.city;
+            
+            // Add industry checkboxes event listeners
+            document.querySelectorAll('input[name="industries"]').forEach(checkbox => {
+                checkbox.addEventListener('change', checkQuestion3Validity);
+            });
+            
+            // Check if AI profiling is already completed
+            checkAIProfileStatus();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Event listeners
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                partnerAuth.logout();
+            });
+
+            document.getElementById('start-ai-assistant').addEventListener('click', () => {
+                const startBtn = document.getElementById('start-ai-assistant');
+                if (startBtn.disabled) {
+                    alert('You have already completed the AI Profile.');
+                    return;
+                }
+                openAIPopup();
+            });
+            
+            document.getElementById('view-services-btn').addEventListener('click', () => {
+                openServicesPopup();
+            });
+        });
+        
+        function openReferralPopup() {
+            const popup = document.getElementById('referral-popup');
+            popup.classList.add('active');
+        }
+        
+        function closeReferralPopup() {
+            const popup = document.getElementById('referral-popup');
+            popup.classList.remove('active');
+            // Reset selection
+            document.querySelectorAll('input[name="referral-type"]').forEach(input => {
+                input.checked = false;
+                input.closest('.option-item').classList.remove('selected');
+            });
+            document.getElementById('referral-proceed-btn').disabled = true;
+        }
+        
+        function selectReferralType(type) {
+            // Clear previous selections
+            document.querySelectorAll('input[name="referral-type"]').forEach(input => {
+                input.checked = false;
+                input.closest('.option-item').classList.remove('selected');
+            });
+            
+            // Select current option
+            const selectedInput = document.querySelector(`input[name="referral-type"][value="${type}"]`);
+            selectedInput.checked = true;
+            selectedInput.closest('.option-item').classList.add('selected');
+            
+            // Enable proceed button
+            document.getElementById('referral-proceed-btn').disabled = false;
+        }
+        
+        function proceedReferral() {
+            const selectedType = document.querySelector('input[name="referral-type"]:checked')?.value;
+            if (selectedType) {
+                alert(`Proceeding with ${selectedType === 'client' ? 'Client' : 'Candidate'} referral...`);
+                closeReferralPopup();
+            }
+        }
+        let currentQuestion = 1;
+        let selectedDate = '';
+        let selectedTime = '';
+        let interviewData = {
+            partnerType: '',
+            services: [],
+            industries: [],
+            experienceIndustry: '',
+            experienceYears: '',
+            workType: '',
+            organisationName: '',
+            meetingDate: '',
+            meetingTime: ''
+        };
+        
+        function selectExperienceIndustry(value) {
+            // Clear previous selections
+            document.querySelectorAll('input[name="experience-industry"]').forEach(input => {
+                input.checked = false;
+                input.closest('.option-item').classList.remove('selected');
+            });
+            
+            // Select current option
+            const selectedInput = document.querySelector(`input[name="experience-industry"][value="${value}"]`);
+            selectedInput.checked = true;
+            selectedInput.closest('.option-item').classList.add('selected');
+            
+            interviewData.experienceIndustry = value;
+            checkQuestion4Validity();
+        }
+        
+        function updateExperienceYears() {
+            const years = document.getElementById('experience-years').value;
+            interviewData.experienceYears = years;
+            checkQuestion4Validity();
+        }
+        
+        function selectWorkType(value) {
+            // Clear previous selections
+            document.querySelectorAll('input[name="work-type"]').forEach(input => {
+                input.checked = false;
+                input.closest('.option-item').classList.remove('selected');
+            });
+            
+            // Select current option
+            const selectedInput = document.querySelector(`input[name="work-type"][value="${value}"]`);
+            selectedInput.checked = true;
+            selectedInput.closest('.option-item').classList.add('selected');
+            
+            interviewData.workType = value;
+            
+            // Show/hide organisation field
+            const orgField = document.getElementById('organisation-field');
+            if (value === 'organisation') {
+                orgField.style.display = 'block';
+            } else {
+                orgField.style.display = 'none';
+                interviewData.organisationName = '';
+                document.getElementById('organisation-name').value = '';
+            }
+            
+            checkQuestion4Validity();
+        }
+        
+        function updateOrganisationName() {
+            const orgName = document.getElementById('organisation-name').value;
+            interviewData.organisationName = orgName;
+            checkQuestion4Validity();
+        }
+        
+        function checkQuestion4Validity() {
+            const nextBtn = document.getElementById('next-btn');
+            if (currentQuestion === 4) {
+                let isValid = interviewData.experienceIndustry !== '' && 
+                             interviewData.experienceYears !== '' && 
+                             interviewData.workType !== '';
+                
+                // If organisation is selected, check if name is provided
+                if (interviewData.workType === 'organisation') {
+                    isValid = isValid && interviewData.organisationName !== '';
+                }
+                
+                nextBtn.disabled = !isValid;
+                nextBtn.style.opacity = isValid ? '1' : '0.5';
+            }
+        }
+        
+        function openAIPopup() {
+            const popup = document.getElementById('ai-popup');
+            popup.classList.add('active');
+            
+            // Set profile info in popup
+            const user = partnerAuth.getCurrentUser();
+            if (user) {
+                document.getElementById('popup-profile-id').textContent = user.profileId;
+                document.getElementById('popup-partner-name').textContent = `${user.firstName} ${user.lastName}`;
+            }
+            
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('meeting-date').min = today;
+            
+            // Show first question
+            showQuestion(1);
+        }
+        
+        function openAIPopup() {
+            const popup = document.getElementById('ai-popup');
+            popup.classList.add('active');
+            
+            // Set profile info in popup
+            const user = partnerAuth.getCurrentUser();
+            if (user) {
+                document.getElementById('popup-profile-id').textContent = user.profileId;
+                document.getElementById('popup-partner-name').textContent = `${user.firstName} ${user.lastName}`;
+            }
+            
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('meeting-date').min = today;
+            
+            // Show first question
+            showQuestion(1);
+        }
+        
+        function closeAIPopup() {
+            const popup = document.getElementById('ai-popup');
+            popup.classList.remove('active');
+            resetInterview();
+        }
+        
+        function resetInterview() {
+            currentQuestion = 0;
+            interviewData = {
+                partnerType: '',
+                services: [],
+                meetingDate: '',
+                meetingTime: ''
+            };
+            
+            // Reset all form inputs
+            document.querySelectorAll('input[type="radio"]').forEach(input => {
+                input.checked = false;
+                input.closest('.option-item').classList.remove('selected');
+            });
+            
+            document.querySelectorAll('input[type="checkbox"]').forEach(input => {
+                input.checked = false;
+                input.closest('.option-item').classList.remove('selected');
+            });
+            
+            document.getElementById('meeting-date').value = '';
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+        }
+        
+        function showQuestion(questionNum) {
+            // Hide all questions
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`question-${i}`).style.display = 'none';
+            }
+            
+            // Show/hide company intro based on question
+            const companyIntro = document.getElementById('company-intro');
+            if (questionNum === 1) {
+                companyIntro.style.display = 'block';
+            } else {
+                companyIntro.style.display = 'none';
+            }
+            
+            // Show current question
+            document.getElementById(`question-${questionNum}`).style.display = 'block';
+            
+            // Update progress
+            document.getElementById('progress-text').textContent = `Step ${questionNum} of 5`;
+            
+            // Update buttons
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            prevBtn.style.display = questionNum === 1 ? 'none' : 'inline-block';
+            nextBtn.style.display = questionNum === 5 ? 'none' : 'inline-block';
+            submitBtn.style.display = questionNum === 5 ? 'inline-block' : 'none';
+            
+            // Check validity for current question
+            if (questionNum === 1) {
+                checkQuestion1Validity();
+            } else if (questionNum === 2) {
+                checkQuestion2Validity();
+            } else if (questionNum === 3) {
+                checkQuestion3Validity();
+            } else if (questionNum === 4) {
+                checkQuestion4Validity();
+            } else if (questionNum === 5) {
+                checkQuestion5Validity();
+            }
+            
+            // Force scroll to absolute top to show question title
+            const popupBody = document.querySelector('.popup-body');
+            const popupContent = document.querySelector('.popup-content');
+            
+            // Immediate forced scroll to absolute top
+            if (popupBody) {
+                popupBody.scrollTop = 0;
+                popupBody.scrollTo(0, 0);
+            }
+            if (popupContent) {
+                popupContent.scrollTop = 0;
+                popupContent.scrollTo(0, 0);
+            }
+            
+            // Use requestAnimationFrame for immediate scroll
+            requestAnimationFrame(() => {
+                if (popupBody) popupBody.scrollTop = 0;
+                if (popupContent) popupContent.scrollTop = 0;
+            });
+            
+            // Multiple aggressive scroll attempts
+            setTimeout(() => {
+                if (popupBody) {
+                    popupBody.scrollTop = 0;
+                    popupBody.scrollTo({ top: 0, behavior: 'instant' });
+                }
+                if (popupContent) {
+                    popupContent.scrollTop = 0;
+                    popupContent.scrollTo({ top: 0, behavior: 'instant' });
+                }
+            }, 1);
+            
+            setTimeout(() => {
+                if (popupBody) popupBody.scrollTop = 0;
+                if (popupContent) popupContent.scrollTop = 0;
+            }, 10);
+            
+            setTimeout(() => {
+                if (popupBody) popupBody.scrollTop = 0;
+                if (popupContent) popupContent.scrollTop = 0;
+            }, 50);
+            
+            setTimeout(() => {
+                if (popupBody) popupBody.scrollTop = 0;
+                if (popupContent) popupContent.scrollTop = 0;
+            }, 100);
+            
+            currentQuestion = questionNum;
+        }
+        
+        function selectOption(questionNum, value) {
+            if (questionNum === 1) {
+                // Clear previous selections
+                document.querySelectorAll('input[name="partner-type"]').forEach(input => {
+                    input.checked = false;
+                    input.closest('.option-item').classList.remove('selected');
+                });
+                
+                // Select current option
+                const selectedInput = document.querySelector(`input[value="${value}"]`);
+                selectedInput.checked = true;
+                selectedInput.closest('.option-item').classList.add('selected');
+                
+                interviewData.partnerType = value;
+            }
+            
+            updateNextButtonState();
+        }
+        
+        function toggleService(value) {
+            const input = document.querySelector(`input[value="${value}"]`);
+            const optionItem = input.closest('.option-item');
+            
+            if (input.checked) {
+                input.checked = false;
+                optionItem.classList.remove('selected');
+                // Remove from array
+                const index = interviewData.services.indexOf(value);
+                if (index > -1) {
+                    interviewData.services.splice(index, 1);
+                }
+            } else {
+                input.checked = true;
+                optionItem.classList.add('selected');
+                // Add to array only if not already present
+                if (!interviewData.services.includes(value)) {
+                    interviewData.services.push(value);
+                }
+            }
+            
+            console.log('Current services:', interviewData.services);
+            updateNextButtonState();
+        }
+        
+        function updateTimeSlots() {
+            const selectedDate = document.getElementById('meeting-date').value;
+            interviewData.meetingDate = selectedDate;
+            
+            // Clear previous time selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            interviewData.meetingTime = '';
+            
+            updateNextButtonState();
+        }
+        
+        function selectTime(time) {
+            // Clear previous selections
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Select current time
+            event.target.classList.add('selected');
+            interviewData.meetingTime = time;
+            
+            updateNextButtonState();
+        }
+        
+        function updateNextButtonState() {
+            const nextBtn = document.getElementById('next-btn');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            let isValid = false;
+            
+            if (currentQuestion === 1) {
+                isValid = interviewData.partnerType !== '';
+                nextBtn.disabled = !isValid;
+                nextBtn.style.opacity = isValid ? '1' : '0.5';
+            } else if (currentQuestion === 2) {
+                isValid = interviewData.services.length > 0;
+                nextBtn.disabled = !isValid;
+                nextBtn.style.opacity = isValid ? '1' : '0.5';
+            } else if (currentQuestion === 3) {
+                isValid = interviewData.industries.length > 0;
+                nextBtn.disabled = !isValid;
+                nextBtn.style.opacity = isValid ? '1' : '0.5';
+            } else if (currentQuestion === 4) {
+                isValid = interviewData.experienceIndustry !== '' && 
+                         interviewData.experienceYears !== '' && 
+                         interviewData.workType !== '';
+                if (interviewData.workType === 'organisation') {
+                    isValid = isValid && interviewData.organisationName !== '';
+                }
+                nextBtn.disabled = !isValid;
+                nextBtn.style.opacity = isValid ? '1' : '0.5';
+            } else if (currentQuestion === 5) {
+                isValid = interviewData.meetingDate !== '' && interviewData.meetingTime !== '';
+                submitBtn.disabled = !isValid;
+                submitBtn.style.opacity = isValid ? '1' : '0.5';
+            }
+        }
+        
+        function nextQuestion() {
+            if (currentQuestion < 5) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            }
+        }
+        
+        function previousQuestion() {
+            if (currentQuestion > 1) {
+                showQuestion(currentQuestion - 1);
+            }
+        }
+        
+        function submitInterview() {
+            console.log('=== Starting Interview Submission ===');
+            
+            // Prepare submission data
+            const user = partnerAuth.getCurrentUser();
+            console.log('User data:', user);
+            console.log('Interview data:', interviewData);
+            
+            // Prepare AI Profile data for the new function
+            const aiProfileData = {
+                action: 'submitAIProfile',
+                profileId: user.profileId,
+                partnerType: interviewData.partnerType,
+                serviceInterest: [...new Set(interviewData.services)].join(','),
+                industryType: [...new Set(interviewData.industries)].join(','),
+                industryExperience: interviewData.experienceIndustry,
+                yearOfExp: interviewData.experienceYears,
+                orgType: interviewData.workType === 'organisation' ? interviewData.organisationName : interviewData.workType,
+                connectTime: `${interviewData.meetingDate} at ${interviewData.meetingTime}`
+            };
+            
+            console.log('AI Profile data:', aiProfileData);
+            
+            // Show loading state
+            const submitBtn = document.getElementById('submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            // Use GET method with URL parameters (more reliable for Google Apps Script)
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbwC1fvd5mHB_05kYaibR2JPxBFpzwFw-8n-bBFlL0ms8aYPjJS85QIpwLGPQQzKGldZ/exec';
+            const params = new URLSearchParams(aiProfileData);
+            
+            console.log('Making request to:', `${scriptUrl}?${params}`);
+            
+            fetch(`${scriptUrl}?${params}`, {
+                method: 'GET',
+                mode: 'no-cors' // Handle CORS issues
+            })
+            .then(() => {
+                console.log('Request completed (no-cors mode)');
+                
+                // Store locally as backup
+                const existingInterviews = JSON.parse(localStorage.getItem('aiInterviews') || '[]');
+                existingInterviews.push({
+                    ...aiProfileData,
+                    submittedAt: new Date().toISOString()
+                });
+                localStorage.setItem('aiInterviews', JSON.stringify(existingInterviews));
+                
+                // Show success message
+                alert(`Thank you! Your AI interview has been submitted successfully.\n\nOur team will connect with you on ${interviewData.meetingDate} at ${interviewData.meetingTime}.\n\nYou will receive a confirmation email shortly.`);
+                
+                // Close popup and update activity
+                closeAIPopup();
+                updateActivitySection();
+            })
+            .catch(error => {
+                console.error('Submission error:', error);
+                
+                // Even on error, store locally and show success
+                const existingInterviews = JSON.parse(localStorage.getItem('aiInterviews') || '[]');
+                existingInterviews.push({
+                    ...aiProfileData,
+                    submittedAt: new Date().toISOString(),
+                    status: 'pending_sync'
+                });
+                localStorage.setItem('aiInterviews', JSON.stringify(existingInterviews));
+                
+                alert(`Thank you! Your AI interview has been submitted.\n\nOur team will connect with you on ${interviewData.meetingDate} at ${interviewData.meetingTime}.\n\nNote: If you don't receive a confirmation email within 24 hours, please contact support.`);
+                
+                closeAIPopup();
+                updateActivitySection();
+            })
+            .finally(() => {
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+        }
+        
+        function updateActivitySection() {
+            // Add new activity item
+            const activitySection = document.querySelector('.activity-section');
+            const newActivity = document.createElement('div');
+            newActivity.className = 'activity-item';
+            newActivity.innerHTML = `
+                <div class="activity-icon activity-success">✓</div>
+                <div class="activity-content">
+                    <div class="activity-title-text">AI Interview Completed</div>
+                    <div class="activity-description">Successfully completed partner interview - meeting scheduled for ${interviewData.meetingDate}</div>
+                </div>
+            `;
+            
+            // Insert after the title
+            const activityTitle = activitySection.querySelector('.activity-title');
+            activityTitle.insertAdjacentElement('afterend', newActivity);
+        }
+        
+        // Close popup when clicking outside
+        document.getElementById('ai-popup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAIPopup();
+            }
+        });
+        
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('ai-popup').classList.contains('active')) {
+                closeAIPopup();
+            }
+            if (e.key === 'Escape' && document.getElementById('services-popup').classList.contains('active')) {
+                closeServicesPopup();
+            }
+            if (e.key === 'Escape' && document.getElementById('referral-popup').classList.contains('active')) {
+                closeReferralPopup();
+            }
+        });
+        
+        function openServicesPopup() {
+            const popup = document.getElementById('services-popup');
+            popup.classList.add('active');
+            loadServicesData();
+        }
+        
+        function closeServicesPopup() {
+            const popup = document.getElementById('services-popup');
+            popup.classList.remove('active');
+        }
+        
+        function loadServicesData() {
+            const user = partnerAuth.getCurrentUser();
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbwC1fvd5mHB_05kYaibR2JPxBFpzwFw-8n-bBFlL0ms8aYPjJS85QIpwLGPQQzKGldZ/exec';
+            const callbackName = 'servicesCallback' + Date.now();
+            
+            document.getElementById('services-loading').style.display = 'block';
+            document.getElementById('services-content').style.display = 'none';
+            document.getElementById('no-services-found').style.display = 'none';
+            
+            window[callbackName] = function(result) {
+                document.getElementById('services-loading').style.display = 'none';
+                
+                if (result.success && result.services && result.services.length > 0) {
+                    displayServicesData(result.services);
+                } else {
+                    document.getElementById('no-services-found').style.display = 'block';
+                }
+                
+                delete window[callbackName];
+                if (script.parentNode) script.parentNode.removeChild(script);
+            };
+            
+            const params = new URLSearchParams({
+                action: 'getPartnerServices',
+                profileId: user.profileId,
+                callback: callbackName
+            });
+            
+            const script = document.createElement('script');
+            script.src = `${scriptUrl}?${params}`;
+            script.onerror = function() {
+                document.getElementById('services-loading').style.display = 'none';
+                document.getElementById('no-services-found').style.display = 'block';
+                delete window[callbackName];
+            };
+            
+            document.head.appendChild(script);
+        }
+        
+        function displayServicesData(services) {
+            const container = document.getElementById('services-content');
+            container.innerHTML = '';
+            
+            // Main container with vertical layout
+            const mainContainer = document.createElement('div');
+            mainContainer.className = 'main-container';
+            mainContainer.style.cssText = 'padding: 32px; display: flex; flex-direction: column; gap: 24px;';
+            
+            // Partner Type Card
+            const partnerTypeCard = document.createElement('div');
+            partnerTypeCard.style.cssText = `
+                background: white;
+                border: 1px solid #e2e8f0;
+                border-radius: 12px;
+                padding: 24px;
+                height: fit-content;
+            `;
+            
+            const partnerTypes = [...new Set(services.map(s => s.partnerType).filter(Boolean))];
+            
+            partnerTypeCard.innerHTML = `
+                <h3 style="font-size: 18px; font-weight: 600; color: #1e293b; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px;">Partner Type</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px;">
+                    ${partnerTypes.map(type => `
+                        <div style="
+                            background: #f8fafc;
+                            border: 1px solid #e2e8f0;
+                            border-radius: 8px;
+                            padding: 16px;
+                            text-align: center;
+                            transition: all 0.2s ease;
+                            cursor: default;
+                        " onmouseover="this.style.background='#e2e8f0'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='#f8fafc'; this.style.transform='translateY(0)';">
+                            <div style="font-size: 14px; font-weight: 600; color: #1e293b; margin-bottom: 4px;">${type}</div>
+                            <div style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Partner</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            // Service Type Card
+            const serviceTypeCard = document.createElement('div');
+            serviceTypeCard.style.cssText = `
+                background: white;
+                border: 1px solid #e2e8f0;
+                border-radius: 12px;
+                padding: 24px;
+            `;
+            
+            // Collect all unique services
+            const allServices = [];
+            services.forEach(service => {
+                if (service.services) {
+                    const servicesList = service.services.split(',').map(s => s.trim()).filter(s => s);
+                    allServices.push(...servicesList);
+                }
+            });
+            const uniqueServices = [...new Set(allServices)];
+            
+            serviceTypeCard.innerHTML = `
+                <h3 style="font-size: 18px; font-weight: 600; color: #1e293b; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px;">Service Type</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px;">
+                    ${uniqueServices.map(service => `
+                        <div style="
+                            background: #f8fafc;
+                            border: 1px solid #e2e8f0;
+                            border-radius: 8px;
+                            padding: 16px;
+                            text-align: center;
+                            transition: all 0.2s ease;
+                            cursor: default;
+                        " onmouseover="this.style.background='#e2e8f0'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='#f8fafc'; this.style.transform='translateY(0)';">
+                            <div style="font-size: 14px; font-weight: 600; color: #1e293b; margin-bottom: 4px;">${service}</div>
+                            <div style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Service</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            mainContainer.appendChild(partnerTypeCard);
+            mainContainer.appendChild(serviceTypeCard);
+            container.appendChild(mainContainer);
+            container.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
