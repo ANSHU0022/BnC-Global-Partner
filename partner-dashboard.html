@@ -717,8 +717,8 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            border: 2px solid #2563eb;
+            background: #2563eb;
+            border: 1px solid #2563eb;
             color: white;
             padding: 12px 24px;
             border-radius: 8px;
@@ -726,21 +726,11 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
         
         .btn-primary:hover {
-            background: linear-gradient(135deg, #1d4ed8, #1e40af);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
-        }
-        
-        .btn-primary:disabled {
-            background: #9ca3af;
-            border-color: #9ca3af;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
+            background: #1d4ed8;
+            border-color: #1d4ed8;
         }
         
         /* Responsive */
@@ -749,6 +739,86 @@
                 width: 95%;
                 margin: 20px;
             }
+        
+        .industries-container {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 8px;
+        }
+        
+        .industry-main-box {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .industry-main-box:hover {
+            border-color: #2563eb;
+            background: #f8fafc;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
+        }
+        
+        .industry-main-box.selected {
+            border-color: #2563eb;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.2);
+        }
+        
+        .industry-main-box input[type="checkbox"] {
+            transform: scale(1.2);
+            accent-color: #2563eb;
+        }
+        
+        .industry-main-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            cursor: pointer;
+        }
+        
+        .industry-sub-options {
+            margin-left: 20px;
+            margin-bottom: 16px;
+            padding-left: 20px;
+            border-left: 3px solid #e5e7eb;
+        }
+        
+        .industry-sub-item {
+            padding: 8px 12px;
+            margin-bottom: 4px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .industry-sub-item:hover {
+            background: #f3f4f6;
+        }
+        
+        .industry-sub-item input[type="checkbox"] {
+            transform: scale(1.1);
+            accent-color: #2563eb;
+        }
+        
+        .industry-sub-item span {
+            font-size: 14px;
+            color: #374151;
+            cursor: pointer;
+        }
             
             .popup-header {
                 padding: 24px;
@@ -889,6 +959,36 @@
                 <button class="card-button">Contact Support</button>
             </div>
         </div>
+        
+        <!-- Additional Action Cards -->
+        <div class="action-cards">
+            <div class="action-card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: #f0f9ff; color: #0284c7;">🌍</div>
+                    <h3 class="card-title">International Networking</h3>
+                </div>
+                <p class="card-description">Join our global network and collaborate with international clients. Expand your business reach worldwide.</p>
+                <button class="card-button">Join Network</button>
+            </div>
+            
+            <div class="action-card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: #fef3c7; color: #d97706;">👥</div>
+                    <h3 class="card-title">Manpower Requirements</h3>
+                </div>
+                <p class="card-description">Find skilled professionals or offer your expertise to meet project requirements.</p>
+                <button class="card-button">View Opportunities</button>
+            </div>
+            
+            <div class="action-card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: #f0fdf4; color: #16a34a;">💰</div>
+                    <h3 class="card-title">Earn from Referral</h3>
+                </div>
+                <p class="card-description">Refer new partners and clients to earn attractive commissions and rewards.</p>
+                <button class="card-button" onclick="openReferralPopup()">Start Referring</button>
+            </div>
+        </div>
 
         <!-- Recent Activity -->
         <div class="activity-section">
@@ -939,7 +1039,37 @@
         }
     </style>
 
-    <!-- AI Interview Popup -->
+    <!-- Referral Popup -->
+    <div id="referral-popup" class="popup-overlay">
+        <div class="popup-content" style="max-width: 500px;">
+            <button class="close-btn" onclick="closeReferralPopup()">&times;</button>
+            
+            <div class="popup-header">
+                <h2 class="popup-title">Start Referring</h2>
+                <p class="popup-subtitle">Choose your referral type</p>
+            </div>
+            
+            <div class="popup-body">
+                <div class="question-options">
+                    <label class="option-item" onclick="selectReferralType('client')">
+                        <input type="radio" name="referral-type" value="client">
+                        <span class="option-label">Refer a Client</span>
+                    </label>
+                    <label class="option-item" onclick="selectReferralType('candidate')">
+                        <input type="radio" name="referral-type" value="candidate">
+                        <span class="option-label">Refer a Candidate</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="popup-footer">
+                <div class="popup-buttons">
+                    <button class="btn-secondary" onclick="closeReferralPopup()">Cancel</button>
+                    <button id="referral-proceed-btn" class="btn-primary" onclick="proceedReferral()" disabled>Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="ai-popup" class="popup-overlay">
         <div class="popup-content">
             <button class="close-btn" onclick="closeAIPopup()">&times;</button>
@@ -950,8 +1080,8 @@
             </div>
             
             <div class="popup-body">
-                <!-- Company Summary -->
-                <div id="company-intro" class="company-summary">
+                <!-- Company Summary - Only show in Question 1 -->
+                <div id="company-intro" class="company-summary" style="display: none;">
                     <h3 class="company-name">BnC Global</h3>
                     <p class="company-description">
                         BnC Global is a leading professional services firm specializing in business consulting, compliance, and advisory services. We help organizations navigate complex regulatory environments and achieve sustainable growth through strategic partnerships.
@@ -970,11 +1100,11 @@
                     <div class="question-options">
                         <label class="option-item" onclick="selectOption(1, 'service-provider')">
                             <input type="radio" name="partner-type" value="service-provider">
-                            <span class="option-label">Service Provider Partner</span>
+                            <span class="option-label">Service Provider </span>
                         </label>
                         <label class="option-item" onclick="selectOption(1, 'service-consumer')">
                             <input type="radio" name="partner-type" value="service-consumer">
-                            <span class="option-label">Service Consumer Partner</span>
+                            <span class="option-label">Service Consumer </span>
                         </label>
                         <label class="option-item" onclick="selectOption(1, 'both')">
                             <input type="radio" name="partner-type" value="both">
@@ -1030,17 +1160,630 @@
                         </label>
                         <label class="option-item" onclick="toggleService('virtual-cfso')">
                             <input type="checkbox" name="services" value="virtual-cfso">
-                            <span class="option-label">Virtual CFSO</span>
+                            <span class="option-label">Virtual CFO</span>
                         </label>
                         <label class="option-item" onclick="toggleService('training-provider')">
                             <input type="checkbox" name="services" value="training-provider">
                             <span class="option-label">Training Provider</span>
+                        </label>
+                         <label class="option-item" onclick="toggleService('training-provider')">
+                            <input type="checkbox" name="services" value="training-provider">
+                            <span class="option-label">Other</span>
                         </label>
                     </div>
                 </div>
                 
                 <!-- Question 3 -->
                 <div id="question-3" class="question-container">
+                    <h3 class="question-title">Which industries do you work with for this service/solution?</h3>
+                    <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">(You can select multiple options)</p>
+                    <div class="question-options">
+                        <!-- Public Services -->
+                        <label class="option-item" onclick="toggleMainIndustry('public-services')">
+                            <input type="checkbox" name="main-industries" value="public-services">
+                            <span class="option-label">Public Services</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-public-services" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('ministries')">
+                                <input type="checkbox" name="industries" value="ministries">
+                                <span>Ministries</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('semi-government')">
+                                <input type="checkbox" name="industries" value="semi-government">
+                                <span>Semi-government</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('justice')">
+                                <input type="checkbox" name="industries" value="justice">
+                                <span>Justice</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('science')">
+                                <input type="checkbox" name="industries" value="science">
+                                <span>Science</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('special-economic-zones')">
+                                <input type="checkbox" name="industries" value="special-economic-zones">
+                                <span>Special Economic Zones</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('free-zone-authorities')">
+                                <input type="checkbox" name="industries" value="free-zone-authorities">
+                                <span>Free Zone Authorities</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('financial-centers')">
+                                <input type="checkbox" name="industries" value="financial-centers">
+                                <span>Financial Centers</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Healthcare -->
+                        <label class="option-item" onclick="toggleMainIndustry('healthcare')">
+                            <input type="checkbox" name="main-industries" value="healthcare">
+                            <span class="option-label">Healthcare</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-healthcare" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('healthcare-providers')">
+                                <input type="checkbox" name="industries" value="healthcare-providers">
+                                <span>Healthcare Providers & Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('healthcare-equipment')">
+                                <input type="checkbox" name="industries" value="healthcare-equipment">
+                                <span>Healthcare Equipment & Supplies</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('biotechnology')">
+                                <input type="checkbox" name="industries" value="biotechnology">
+                                <span>Biotechnology & Life Sciences</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('pharmaceuticals')">
+                                <input type="checkbox" name="industries" value="pharmaceuticals">
+                                <span>Pharmaceuticals</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Real Estate & Construction -->
+                        <label class="option-item" onclick="toggleMainIndustry('real-estate')">
+                            <input type="checkbox" name="main-industries" value="real-estate">
+                            <span class="option-label">Real Estate & Construction</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-real-estate" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('real-estate-investment')">
+                                <input type="checkbox" name="industries" value="real-estate-investment">
+                                <span>Real Estate Investment</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('infrastructure-development')">
+                                <input type="checkbox" name="industries" value="infrastructure-development">
+                                <span>Infrastructure Development</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('construction-engineering')">
+                                <input type="checkbox" name="industries" value="construction-engineering">
+                                <span>Construction & Engineering</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Education -->
+                        <label class="option-item" onclick="toggleMainIndustry('education')">
+                            <input type="checkbox" name="main-industries" value="education">
+                            <span class="option-label">Education</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-education" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('public-private-schools')">
+                                <input type="checkbox" name="industries" value="public-private-schools">
+                                <span>Public & Private Schools</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('universities')">
+                                <input type="checkbox" name="industries" value="universities">
+                                <span>Universities</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('vocational-institutes')">
+                                <input type="checkbox" name="industries" value="vocational-institutes">
+                                <span>Skilling and Vocational Institutes</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('education-technology')">
+                                <input type="checkbox" name="industries" value="education-technology">
+                                <span>Education Technology</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('libraries')">
+                                <input type="checkbox" name="industries" value="libraries">
+                                <span>Libraries</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Finance -->
+                        <label class="option-item" onclick="toggleMainIndustry('finance')">
+                            <input type="checkbox" name="main-industries" value="finance">
+                            <span class="option-label">Finance</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-finance" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('banking')">
+                                <input type="checkbox" name="industries" value="banking">
+                                <span>Banking</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('consumer-financial-services')">
+                                <input type="checkbox" name="industries" value="consumer-financial-services">
+                                <span>Consumer Financial Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('microfinance')">
+                                <input type="checkbox" name="industries" value="microfinance">
+                                <span>Microfinance</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('insurance')">
+                                <input type="checkbox" name="industries" value="insurance">
+                                <span>Insurance</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('private-equity')">
+                                <input type="checkbox" name="industries" value="private-equity">
+                                <span>Private Equity</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('capital-markets')">
+                                <input type="checkbox" name="industries" value="capital-markets">
+                                <span>Capital Markets</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('sovereign-wealth-funds')">
+                                <input type="checkbox" name="industries" value="sovereign-wealth-funds">
+                                <span>Sovereign Wealth Funds</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('investment-wealth-management')">
+                                <input type="checkbox" name="industries" value="investment-wealth-management">
+                                <span>Investment & Wealth Management</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Retail -->
+                        <label class="option-item" onclick="toggleMainIndustry('retail')">
+                            <input type="checkbox" name="main-industries" value="retail">
+                            <span class="option-label">Retail</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-retail" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('consumer-electronics')">
+                                <input type="checkbox" name="industries" value="consumer-electronics">
+                                <span>Consumer Electronics & Appliances</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('textiles-apparel')">
+                                <input type="checkbox" name="industries" value="textiles-apparel">
+                                <span>Textiles & Apparel</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('accessories-luxury-goods')">
+                                <input type="checkbox" name="industries" value="accessories-luxury-goods">
+                                <span>Accessories & Luxury Goods</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('food-beverage')">
+                                <input type="checkbox" name="industries" value="food-beverage">
+                                <span>Food & Beverage</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('household-personal-products')">
+                                <input type="checkbox" name="industries" value="household-personal-products">
+                                <span>Household & Personal Products</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('stores')">
+                                <input type="checkbox" name="industries" value="stores">
+                                <span>Stores</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('trading-distribution')">
+                                <input type="checkbox" name="industries" value="trading-distribution">
+                                <span>Trading & Distribution</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('automotive')">
+                                <input type="checkbox" name="industries" value="automotive">
+                                <span>Automotive</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Social -->
+                        <label class="option-item" onclick="toggleMainIndustry('social')">
+                            <input type="checkbox" name="main-industries" value="social">
+                            <span class="option-label">Social</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-social" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('ngo')">
+                                <input type="checkbox" name="industries" value="ngo">
+                                <span>NGO</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('intergovernmental-organizations')">
+                                <input type="checkbox" name="industries" value="intergovernmental-organizations">
+                                <span>Intergovernmental Organizations</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('social-enterprises')">
+                                <input type="checkbox" name="industries" value="social-enterprises">
+                                <span>Social Enterprises</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('credit-unions')">
+                                <input type="checkbox" name="industries" value="credit-unions">
+                                <span>Credit Unions</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('co-operatives')">
+                                <input type="checkbox" name="industries" value="co-operatives">
+                                <span>Co-operatives</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('community-enterprises')">
+                                <input type="checkbox" name="industries" value="community-enterprises">
+                                <span>Community Enterprises</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('fair-trade-organizations')">
+                                <input type="checkbox" name="industries" value="fair-trade-organizations">
+                                <span>Fair Trade Organizations</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Leisure -->
+                        <label class="option-item" onclick="toggleMainIndustry('leisure')">
+                            <input type="checkbox" name="main-industries" value="leisure">
+                            <span class="option-label">Leisure</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-leisure" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('hotels')">
+                                <input type="checkbox" name="industries" value="hotels">
+                                <span>Hotels</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('resorts-cruise-lines')">
+                                <input type="checkbox" name="industries" value="resorts-cruise-lines">
+                                <span>Resorts & Cruise Lines</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('restaurants-catering-services')">
+                                <input type="checkbox" name="industries" value="restaurants-catering-services">
+                                <span>Restaurants & Catering Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('tourism')">
+                                <input type="checkbox" name="industries" value="tourism">
+                                <span>Tourism</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('leisure-recreation')">
+                                <input type="checkbox" name="industries" value="leisure-recreation">
+                                <span>Leisure & Recreation</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('event-management')">
+                                <input type="checkbox" name="industries" value="event-management">
+                                <span>Event Management</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('sporting')">
+                                <input type="checkbox" name="industries" value="sporting">
+                                <span>Sporting</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Materials -->
+                        <label class="option-item" onclick="toggleMainIndustry('materials')">
+                            <input type="checkbox" name="main-industries" value="materials">
+                            <span class="option-label">Materials</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-materials" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('paper-forest-products')">
+                                <input type="checkbox" name="industries" value="paper-forest-products">
+                                <span>Paper & Forest Products</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('precious-metals')">
+                                <input type="checkbox" name="industries" value="precious-metals">
+                                <span>Precious Metals</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('industrial-metals')">
+                                <input type="checkbox" name="industries" value="industrial-metals">
+                                <span>Industrial Metals</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('chemicals')">
+                                <input type="checkbox" name="industries" value="chemicals">
+                                <span>Chemicals</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('plastics')">
+                                <input type="checkbox" name="industries" value="plastics">
+                                <span>Plastics</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('specialty-mining-metals')">
+                                <input type="checkbox" name="industries" value="specialty-mining-metals">
+                                <span>Specialty Mining & Metals</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('mining-support-services')">
+                                <input type="checkbox" name="industries" value="mining-support-services">
+                                <span>Mining Support Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('equipment')">
+                                <input type="checkbox" name="industries" value="equipment">
+                                <span>& Equipment</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('construction-materials')">
+                                <input type="checkbox" name="industries" value="construction-materials">
+                                <span>Construction Materials</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('primary-resources')">
+                                <input type="checkbox" name="industries" value="primary-resources">
+                                <span>Primary Resources</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Energy -->
+                        <label class="option-item" onclick="toggleMainIndustry('energy')">
+                            <input type="checkbox" name="main-industries" value="energy">
+                            <span class="option-label">Energy</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-energy" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('exploration-production-upstream')">
+                                <input type="checkbox" name="industries" value="exploration-production-upstream">
+                                <span>Exploration & Production (Upstream)</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('refining-marketing-downstream')">
+                                <input type="checkbox" name="industries" value="refining-marketing-downstream">
+                                <span>Refining & Marketing (Downstream)</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('storage-transportation-midstream')">
+                                <input type="checkbox" name="industries" value="storage-transportation-midstream">
+                                <span>Storage & Transportation (Midstream)</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('equipment-services')">
+                                <input type="checkbox" name="industries" value="equipment-services">
+                                <span>Equipment & Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('coal')">
+                                <input type="checkbox" name="industries" value="coal">
+                                <span>Coal</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('natural-gas')">
+                                <input type="checkbox" name="industries" value="natural-gas">
+                                <span>Natural Gas</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('nuclear-energy')">
+                                <input type="checkbox" name="industries" value="nuclear-energy">
+                                <span>Nuclear Energy</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('utilities')">
+                                <input type="checkbox" name="industries" value="utilities">
+                                <span>Utilities</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('renewable-energy')">
+                                <input type="checkbox" name="industries" value="renewable-energy">
+                                <span>Renewable Energy</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Industrial -->
+                        <label class="option-item" onclick="toggleMainIndustry('industrial')">
+                            <input type="checkbox" name="main-industries" value="industrial">
+                            <span class="option-label">Industrial</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-industrial" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('aerospace')">
+                                <input type="checkbox" name="industries" value="aerospace">
+                                <span>Aerospace</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('defense')">
+                                <input type="checkbox" name="industries" value="defense">
+                                <span>Defense</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('electrical-components-equipment')">
+                                <input type="checkbox" name="industries" value="electrical-components-equipment">
+                                <span>Electrical Components & Equipment</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('industrial-conglomerates')">
+                                <input type="checkbox" name="industries" value="industrial-conglomerates">
+                                <span>Industrial Conglomerates</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('construction-machinery-heavy-trucks')">
+                                <input type="checkbox" name="industries" value="construction-machinery-heavy-trucks">
+                                <span>Construction Machinery & Heavy Trucks</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('shipbuilding')">
+                                <input type="checkbox" name="industries" value="shipbuilding">
+                                <span>Shipbuilding</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('agricultural-farm-machinery')">
+                                <input type="checkbox" name="industries" value="agricultural-farm-machinery">
+                                <span>Agricultural & Farm Machinery</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('industrial-machinery')">
+                                <input type="checkbox" name="industries" value="industrial-machinery">
+                                <span>Industrial Machinery</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Technology -->
+                        <label class="option-item" onclick="toggleMainIndustry('technology')">
+                            <input type="checkbox" name="main-industries" value="technology">
+                            <span class="option-label">Technology</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-technology" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('telecom-services')">
+                                <input type="checkbox" name="industries" value="telecom-services">
+                                <span>Telecom Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('communication-equipment')">
+                                <input type="checkbox" name="industries" value="communication-equipment">
+                                <span>Communication Equipment</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('semiconductors')">
+                                <input type="checkbox" name="industries" value="semiconductors">
+                                <span>Semiconductors</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('software')">
+                                <input type="checkbox" name="industries" value="software">
+                                <span>Software</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('internet-ecommerce')">
+                                <input type="checkbox" name="industries" value="internet-ecommerce">
+                                <span>Internet & Ecommerce</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('it-consulting-services')">
+                                <input type="checkbox" name="industries" value="it-consulting-services">
+                                <span>IT Consulting & Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('hardware-equipment')">
+                                <input type="checkbox" name="industries" value="hardware-equipment">
+                                <span>Hardware & Equipment</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Media -->
+                        <label class="option-item" onclick="toggleMainIndustry('media')">
+                            <input type="checkbox" name="main-industries" value="media">
+                            <span class="option-label">Media</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-media" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('advertising')">
+                                <input type="checkbox" name="industries" value="advertising">
+                                <span>Advertising</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('broadcasting')">
+                                <input type="checkbox" name="industries" value="broadcasting">
+                                <span>Broadcasting</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('digital')">
+                                <input type="checkbox" name="industries" value="digital">
+                                <span>Digital</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('cable-satellite')">
+                                <input type="checkbox" name="industries" value="cable-satellite">
+                                <span>Cable & Satellite</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('entertainment')">
+                                <input type="checkbox" name="industries" value="entertainment">
+                                <span>Entertainment</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('publishing')">
+                                <input type="checkbox" name="industries" value="publishing">
+                                <span>Publishing</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Transport -->
+                        <label class="option-item" onclick="toggleMainIndustry('transport')">
+                            <input type="checkbox" name="main-industries" value="transport">
+                            <span class="option-label">Transport</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-transport" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('logistics')">
+                                <input type="checkbox" name="industries" value="logistics">
+                                <span>Logistics</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('airlines')">
+                                <input type="checkbox" name="industries" value="airlines">
+                                <span>Airlines</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('marine')">
+                                <input type="checkbox" name="industries" value="marine">
+                                <span>Marine</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('road-rail')">
+                                <input type="checkbox" name="industries" value="road-rail">
+                                <span>Road & Rail</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('leasing-rental')">
+                                <input type="checkbox" name="industries" value="leasing-rental">
+                                <span>Leasing & Rental</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('infrastructure')">
+                                <input type="checkbox" name="industries" value="infrastructure">
+                                <span>Infrastructure</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Business Services -->
+                        <label class="option-item" onclick="toggleMainIndustry('business-services')">
+                            <input type="checkbox" name="main-industries" value="business-services">
+                            <span class="option-label">Business Services</span>
+                        </label>
+                        <div class="industry-sub-options" id="sub-business-services" style="display: none; margin-left: 20px; margin-bottom: 16px; padding-left: 20px; border-left: 3px solid #e5e7eb;">
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('employment-services')">
+                                <input type="checkbox" name="industries" value="employment-services">
+                                <span>Employment Services</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('business-support')">
+                                <input type="checkbox" name="industries" value="business-support">
+                                <span>Business Support</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('consulting')">
+                                <input type="checkbox" name="industries" value="consulting">
+                                <span>Consulting</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('research')">
+                                <input type="checkbox" name="industries" value="research">
+                                <span>Research</span>
+                            </div>
+                            <div class="industry-sub-item" onclick="toggleSubIndustry('assurance')">
+                                <input type="checkbox" name="industries" value="assurance">
+                                <span>Assurance</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 4 -->
+                <div id="question-4" class="question-container">
+                    <h3 class="question-title">In which industry do you have experience?</h3>
+                    <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">(Select your primary industry experience)</p>
+                    <div class="question-options">
+                        <label class="option-item" onclick="selectExperienceIndustry('public-services')">
+                            <input type="radio" name="experience-industry" value="public-services">
+                            <span class="option-label">Public Services</span>
+                        </label>
+                        <label class="option-item" onclick="selectExperienceIndustry('healthcare')">
+                            <input type="radio" name="experience-industry" value="healthcare">
+                            <span class="option-label">Healthcare</span>
+                        </label>
+                        <label class="option-item" onclick="selectExperienceIndustry('finance')">
+                            <input type="radio" name="experience-industry" value="finance">
+                            <span class="option-label">Finance</span>
+                        </label>
+                        <label class="option-item" onclick="selectExperienceIndustry('technology')">
+                            <input type="radio" name="experience-industry" value="technology">
+                            <span class="option-label">Technology</span>
+                        </label>
+                        <label class="option-item" onclick="selectExperienceIndustry('education')">
+                            <input type="radio" name="experience-industry" value="education">
+                            <span class="option-label">Education</span>
+                        </label>
+                        <label class="option-item" onclick="selectExperienceIndustry('retail')">
+                            <input type="radio" name="experience-industry" value="retail">
+                            <span class="option-label">Retail</span>
+                        </label>
+                        <label class="option-item" onclick="selectExperienceIndustry('other')">
+                            <input type="radio" name="experience-industry" value="other">
+                            <span class="option-label">Other</span>
+                        </label>
+                    </div>
+                    
+                    <h4 style="font-size: 18px; font-weight: 600; color: #111827; margin: 24px 0 16px 0; position: relative; padding-left: 20px;">How many years of experience?
+                        <span style="content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 24px; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-radius: 2px;"></span>
+                    </h4>
+                    <select id="experience-years" onchange="updateExperienceYears()" style="width: 100%; padding: 12px 16px; border: 2px solid #d1d5db; border-radius: 8px; font-size: 15px; font-weight: 500; margin-bottom: 24px;">
+                        <option value="">Select years of experience</option>
+                        <option value="1">1 year</option>
+                        <option value="2">2 years</option>
+                        <option value="3">3 years</option>
+                        <option value="4">4 years</option>
+                        <option value="5">5 years</option>
+                        <option value="6">6 years</option>
+                        <option value="7">7 years</option>
+                        <option value="8">8 years</option>
+                        <option value="9">9 years</option>
+                        <option value="10">10 years</option>
+                        <option value="11">11 years</option>
+                        <option value="12">12 years</option>
+                        <option value="13">13 years</option>
+                        <option value="14">14 years</option>
+                        <option value="15">15 years</option>
+                        <option value="16">16 years</option>
+                        <option value="17">17 years</option>
+                        <option value="18">18 years</option>
+                        <option value="19">19 years</option>
+                        <option value="20">20+ years</option>
+                    </select>
+                    
+                    <h4 style="font-size: 18px; font-weight: 600; color: #111827; margin: 24px 0 16px 0; position: relative; padding-left: 20px;">You work for Organisation or Individual?
+                        <span style="content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 24px; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-radius: 2px;"></span>
+                    </h4>
+                    <div class="question-options">
+                        <label class="option-item" onclick="selectWorkType('organisation')">
+                            <input type="radio" name="work-type" value="organisation">
+                            <span class="option-label">Organisation</span>
+                        </label>
+                        <label class="option-item" onclick="selectWorkType('individual')">
+                            <input type="radio" name="work-type" value="individual">
+                            <span class="option-label">Individual</span>
+                        </label>
+                    </div>
+                    
+                    <div id="organisation-field" style="display: none; margin-top: 16px;">
+                        <label style="font-size: 14px; font-weight: 500; color: #374151; margin-bottom: 8px; display: block;">Organisation Name</label>
+                        <input type="text" id="organisation-name" placeholder="Enter organisation name" onchange="updateOrganisationName()" style="width: 100%; padding: 12px 16px; border: 2px solid #d1d5db; border-radius: 8px; font-size: 15px; font-weight: 500;">
+                    </div>
+                </div>
+                
+                <!-- Question 5 -->
+                <div id="question-5" class="question-container">
                     <h3 class="question-title">When should our team connect with you?</h3>
                     <div class="calendar-container">
                         <div class="date-picker">
@@ -1050,12 +1793,15 @@
                         <div class="date-picker">
                             <h4>🕐 Select Time</h4>
                             <div class="time-slots" id="time-slots">
-                                <div class="time-slot" onclick="selectTime('09:00')">09:00 AM</div>
-                                <div class="time-slot" onclick="selectTime('10:00')">10:00 AM</div>
+                                <div class="time-slot" onclick="selectTime('10:30')">10:30 AM</div>
                                 <div class="time-slot" onclick="selectTime('11:00')">11:00 AM</div>
+                                <div class="time-slot" onclick="selectTime('12:00')">12:00 PM</div>
+                                <div class="time-slot" onclick="selectTime('13:00')">01:00 PM</div>
                                 <div class="time-slot" onclick="selectTime('14:00')">02:00 PM</div>
                                 <div class="time-slot" onclick="selectTime('15:00')">03:00 PM</div>
                                 <div class="time-slot" onclick="selectTime('16:00')">04:00 PM</div>
+                                <div class="time-slot" onclick="selectTime('17:00')">05:00 PM</div>
+                                <div class="time-slot" onclick="selectTime('18:00')">06:00 PM</div>
                             </div>
                         </div>
                     </div>
@@ -1064,7 +1810,7 @@
             
             <div class="popup-footer">
                 <div class="progress-indicator">
-                    <span id="progress-text">Step 1 of 3</span>
+                    <span id="progress-text">Step 1 of 4</span>
                 </div>
                 <div class="popup-buttons">
                     <button id="prev-btn" class="btn-secondary" onclick="previousQuestion()" style="display: none;">Previous</button>
@@ -1075,14 +1821,113 @@
         </div>
     </div>
 
+    <script src="config.js"></script>
+    <script src="security.js"></script>
     <script src="auth-system.js"></script>
     <script>
+        // Toggle main industry option
+        function toggleMainIndustry(category) {
+            const mainOption = document.querySelector(`input[value="${category}"]`);
+            const optionItem = mainOption.closest('.option-item');
+            const subOptions = document.getElementById(`sub-${category}`);
+            
+            if (mainOption.checked) {
+                // Uncheck main option
+                mainOption.checked = false;
+                optionItem.classList.remove('selected');
+                subOptions.style.display = 'none';
+                
+                // Uncheck all sub-options
+                subOptions.querySelectorAll('input[type="checkbox"]').forEach(input => {
+                    input.checked = false;
+                    const index = interviewData.industries.indexOf(input.value);
+                    if (index > -1) {
+                        interviewData.industries.splice(index, 1);
+                    }
+                });
+            } else {
+                // Check main option and show sub-options
+                mainOption.checked = true;
+                optionItem.classList.add('selected');
+                subOptions.style.display = 'block';
+            }
+            
+            checkQuestion3Validity();
+        }
+        
+        // Toggle sub industry option
+        function toggleSubIndustry(value) {
+            const input = document.querySelector(`input[value="${value}"]`);
+            
+            if (input.checked) {
+                input.checked = false;
+                const index = interviewData.industries.indexOf(value);
+                if (index > -1) {
+                    interviewData.industries.splice(index, 1);
+                }
+            } else {
+                input.checked = true;
+                if (!interviewData.industries.includes(value)) {
+                    interviewData.industries.push(value);
+                }
+            }
+            
+            checkQuestion3Validity();
+        }
+        
+        // Check if at least one industry is selected
+        function checkQuestion3Validity() {
+            const selectedIndustries = document.querySelectorAll('input[name="industries"]:checked');
+            const nextBtn = document.getElementById('next-btn');
+            
+            if (currentQuestion === 3) {
+                if (selectedIndustries.length > 0) {
+                    nextBtn.disabled = false;
+                    nextBtn.style.opacity = '1';
+                } else {
+                    nextBtn.disabled = true;
+                    nextBtn.style.opacity = '0.5';
+                }
+            }
+        }
+        
+        function checkQuestion1Validity() {
+            const nextBtn = document.getElementById('next-btn');
+            if (currentQuestion === 1) {
+                const isValid = interviewData.partnerType !== '';
+                nextBtn.disabled = !isValid;
+                nextBtn.style.opacity = isValid ? '1' : '0.5';
+            }
+        }
+        
+        function checkQuestion2Validity() {
+            const nextBtn = document.getElementById('next-btn');
+            if (currentQuestion === 2) {
+                const isValid = interviewData.services.length > 0;
+                nextBtn.disabled = !isValid;
+                nextBtn.style.opacity = isValid ? '1' : '0.5';
+            }
+        }
+        
+        // Check if meeting date and time are selected (Question 5)
+        function checkQuestion5Validity() {
+            const submitBtn = document.getElementById('submit-btn');
+            
+            if (selectedDate && selectedTime) {
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.5';
+            }
+        }
+        
         // Check if user has already completed AI profiling
         function checkAIProfileStatus() {
             const user = partnerAuth.getCurrentUser();
             if (!user) return;
             
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbzMGF0qEor5ASddT7wARkqZKTMepOVaOpvAIniuFf4R1Jpajc7_553MteZGW68H3ade/exec';
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbwC1fvd5mHB_05kYaibR2JPxBFpzwFw-8n-bBFlL0ms8aYPjJS85QIpwLGPQQzKGldZ/exec';
             const callbackName = 'checkCallback' + Date.now();
             
             window[callbackName] = function(result) {
@@ -1144,37 +1989,179 @@
             document.getElementById('partner-country').textContent = user.country;
             document.getElementById('partner-city').textContent = user.city;
             
+            // Add industry checkboxes event listeners
+            document.querySelectorAll('input[name="industries"]').forEach(checkbox => {
+                checkbox.addEventListener('change', checkQuestion3Validity);
+            });
+            
             // Check if AI profiling is already completed
             checkAIProfileStatus();
         }
 
-        // Event listeners
-        document.getElementById('logout-btn').addEventListener('click', () => {
-            partnerAuth.logout();
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Event listeners
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                partnerAuth.logout();
+            });
 
-        document.getElementById('start-ai-assistant').addEventListener('click', () => {
-            // Check if already completed before opening
-            const startBtn = document.getElementById('start-ai-assistant');
-            if (startBtn.disabled) {
-                alert('You have already completed the AI Profile.');
-                return;
+            document.getElementById('start-ai-assistant').addEventListener('click', () => {
+                const startBtn = document.getElementById('start-ai-assistant');
+                if (startBtn.disabled) {
+                    alert('You have already completed the AI Profile.');
+                    return;
+                }
+                openAIPopup();
+            });
+            
+            document.getElementById('view-services-btn').addEventListener('click', () => {
+                openServicesPopup();
+            });
+        });
+        
+        function openReferralPopup() {
+            const popup = document.getElementById('referral-popup');
+            popup.classList.add('active');
+        }
+        
+        function closeReferralPopup() {
+            const popup = document.getElementById('referral-popup');
+            popup.classList.remove('active');
+            // Reset selection
+            document.querySelectorAll('input[name="referral-type"]').forEach(input => {
+                input.checked = false;
+                input.closest('.option-item').classList.remove('selected');
+            });
+            document.getElementById('referral-proceed-btn').disabled = true;
+        }
+        
+        function selectReferralType(type) {
+            // Clear previous selections
+            document.querySelectorAll('input[name="referral-type"]').forEach(input => {
+                input.checked = false;
+                input.closest('.option-item').classList.remove('selected');
+            });
+            
+            // Select current option
+            const selectedInput = document.querySelector(`input[name="referral-type"][value="${type}"]`);
+            selectedInput.checked = true;
+            selectedInput.closest('.option-item').classList.add('selected');
+            
+            // Enable proceed button
+            document.getElementById('referral-proceed-btn').disabled = false;
+        }
+        
+        function proceedReferral() {
+            const selectedType = document.querySelector('input[name="referral-type"]:checked')?.value;
+            if (selectedType) {
+                alert(`Proceeding with ${selectedType === 'client' ? 'Client' : 'Candidate'} referral...`);
+                closeReferralPopup();
             }
-            openAIPopup();
-        });
-        
-        document.getElementById('view-services-btn').addEventListener('click', () => {
-            openServicesPopup();
-        });
-        
-        // AI Interview functionality
-        let currentQuestion = 0;
+        }
+        let currentQuestion = 1;
+        let selectedDate = '';
+        let selectedTime = '';
         let interviewData = {
             partnerType: '',
             services: [],
+            industries: [],
+            experienceIndustry: '',
+            experienceYears: '',
+            workType: '',
+            organisationName: '',
             meetingDate: '',
             meetingTime: ''
         };
+        
+        function selectExperienceIndustry(value) {
+            // Clear previous selections
+            document.querySelectorAll('input[name="experience-industry"]').forEach(input => {
+                input.checked = false;
+                input.closest('.option-item').classList.remove('selected');
+            });
+            
+            // Select current option
+            const selectedInput = document.querySelector(`input[name="experience-industry"][value="${value}"]`);
+            selectedInput.checked = true;
+            selectedInput.closest('.option-item').classList.add('selected');
+            
+            interviewData.experienceIndustry = value;
+            checkQuestion4Validity();
+        }
+        
+        function updateExperienceYears() {
+            const years = document.getElementById('experience-years').value;
+            interviewData.experienceYears = years;
+            checkQuestion4Validity();
+        }
+        
+        function selectWorkType(value) {
+            // Clear previous selections
+            document.querySelectorAll('input[name="work-type"]').forEach(input => {
+                input.checked = false;
+                input.closest('.option-item').classList.remove('selected');
+            });
+            
+            // Select current option
+            const selectedInput = document.querySelector(`input[name="work-type"][value="${value}"]`);
+            selectedInput.checked = true;
+            selectedInput.closest('.option-item').classList.add('selected');
+            
+            interviewData.workType = value;
+            
+            // Show/hide organisation field
+            const orgField = document.getElementById('organisation-field');
+            if (value === 'organisation') {
+                orgField.style.display = 'block';
+            } else {
+                orgField.style.display = 'none';
+                interviewData.organisationName = '';
+                document.getElementById('organisation-name').value = '';
+            }
+            
+            checkQuestion4Validity();
+        }
+        
+        function updateOrganisationName() {
+            const orgName = document.getElementById('organisation-name').value;
+            interviewData.organisationName = orgName;
+            checkQuestion4Validity();
+        }
+        
+        function checkQuestion4Validity() {
+            const nextBtn = document.getElementById('next-btn');
+            if (currentQuestion === 4) {
+                let isValid = interviewData.experienceIndustry !== '' && 
+                             interviewData.experienceYears !== '' && 
+                             interviewData.workType !== '';
+                
+                // If organisation is selected, check if name is provided
+                if (interviewData.workType === 'organisation') {
+                    isValid = isValid && interviewData.organisationName !== '';
+                }
+                
+                nextBtn.disabled = !isValid;
+                nextBtn.style.opacity = isValid ? '1' : '0.5';
+            }
+        }
+        
+        function openAIPopup() {
+            const popup = document.getElementById('ai-popup');
+            popup.classList.add('active');
+            
+            // Set profile info in popup
+            const user = partnerAuth.getCurrentUser();
+            if (user) {
+                document.getElementById('popup-profile-id').textContent = user.profileId;
+                document.getElementById('popup-partner-name').textContent = `${user.firstName} ${user.lastName}`;
+            }
+            
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('meeting-date').min = today;
+            
+            // Show first question
+            showQuestion(1);
+        }
         
         function openAIPopup() {
             const popup = document.getElementById('ai-popup');
@@ -1229,11 +2216,11 @@
         
         function showQuestion(questionNum) {
             // Hide all questions
-            document.querySelectorAll('.question-container').forEach(q => {
-                q.classList.remove('active');
-            });
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`question-${i}`).style.display = 'none';
+            }
             
-            // Show company intro for first question
+            // Show/hide company intro based on question
             const companyIntro = document.getElementById('company-intro');
             if (questionNum === 1) {
                 companyIntro.style.display = 'block';
@@ -1242,32 +2229,81 @@
             }
             
             // Show current question
-            document.getElementById(`question-${questionNum}`).classList.add('active');
+            document.getElementById(`question-${questionNum}`).style.display = 'block';
             
             // Update progress
-            document.getElementById('progress-text').textContent = `Step ${questionNum} of 3`;
+            document.getElementById('progress-text').textContent = `Step ${questionNum} of 5`;
             
             // Update buttons
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
             const submitBtn = document.getElementById('submit-btn');
             
+            prevBtn.style.display = questionNum === 1 ? 'none' : 'inline-block';
+            nextBtn.style.display = questionNum === 5 ? 'none' : 'inline-block';
+            submitBtn.style.display = questionNum === 5 ? 'inline-block' : 'none';
+            
+            // Check validity for current question
             if (questionNum === 1) {
-                prevBtn.style.display = 'none';
-                nextBtn.style.display = 'inline-block';
-                submitBtn.style.display = 'none';
+                checkQuestion1Validity();
+            } else if (questionNum === 2) {
+                checkQuestion2Validity();
             } else if (questionNum === 3) {
-                prevBtn.style.display = 'inline-block';
-                nextBtn.style.display = 'none';
-                submitBtn.style.display = 'inline-block';
-            } else {
-                prevBtn.style.display = 'inline-block';
-                nextBtn.style.display = 'inline-block';
-                submitBtn.style.display = 'none';
+                checkQuestion3Validity();
+            } else if (questionNum === 4) {
+                checkQuestion4Validity();
+            } else if (questionNum === 5) {
+                checkQuestion5Validity();
             }
             
+            // Force scroll to absolute top to show question title
+            const popupBody = document.querySelector('.popup-body');
+            const popupContent = document.querySelector('.popup-content');
+            
+            // Immediate forced scroll to absolute top
+            if (popupBody) {
+                popupBody.scrollTop = 0;
+                popupBody.scrollTo(0, 0);
+            }
+            if (popupContent) {
+                popupContent.scrollTop = 0;
+                popupContent.scrollTo(0, 0);
+            }
+            
+            // Use requestAnimationFrame for immediate scroll
+            requestAnimationFrame(() => {
+                if (popupBody) popupBody.scrollTop = 0;
+                if (popupContent) popupContent.scrollTop = 0;
+            });
+            
+            // Multiple aggressive scroll attempts
+            setTimeout(() => {
+                if (popupBody) {
+                    popupBody.scrollTop = 0;
+                    popupBody.scrollTo({ top: 0, behavior: 'instant' });
+                }
+                if (popupContent) {
+                    popupContent.scrollTop = 0;
+                    popupContent.scrollTo({ top: 0, behavior: 'instant' });
+                }
+            }, 1);
+            
+            setTimeout(() => {
+                if (popupBody) popupBody.scrollTop = 0;
+                if (popupContent) popupContent.scrollTop = 0;
+            }, 10);
+            
+            setTimeout(() => {
+                if (popupBody) popupBody.scrollTop = 0;
+                if (popupContent) popupContent.scrollTop = 0;
+            }, 50);
+            
+            setTimeout(() => {
+                if (popupBody) popupBody.scrollTop = 0;
+                if (popupContent) popupContent.scrollTop = 0;
+            }, 100);
+            
             currentQuestion = questionNum;
-            updateNextButtonState();
         }
         
         function selectOption(questionNum, value) {
@@ -1348,22 +2384,36 @@
             
             if (currentQuestion === 1) {
                 isValid = interviewData.partnerType !== '';
+                nextBtn.disabled = !isValid;
+                nextBtn.style.opacity = isValid ? '1' : '0.5';
             } else if (currentQuestion === 2) {
                 isValid = interviewData.services.length > 0;
-            } else if (currentQuestion === 3) {
-                isValid = interviewData.meetingDate !== '' && interviewData.meetingTime !== '';
-            }
-            
-            if (currentQuestion === 3) {
-                submitBtn.disabled = !isValid;
-            } else {
                 nextBtn.disabled = !isValid;
+                nextBtn.style.opacity = isValid ? '1' : '0.5';
+            } else if (currentQuestion === 3) {
+                isValid = interviewData.industries.length > 0;
+                nextBtn.disabled = !isValid;
+                nextBtn.style.opacity = isValid ? '1' : '0.5';
+            } else if (currentQuestion === 4) {
+                isValid = interviewData.experienceIndustry !== '' && 
+                         interviewData.experienceYears !== '' && 
+                         interviewData.workType !== '';
+                if (interviewData.workType === 'organisation') {
+                    isValid = isValid && interviewData.organisationName !== '';
+                }
+                nextBtn.disabled = !isValid;
+                nextBtn.style.opacity = isValid ? '1' : '0.5';
+            } else if (currentQuestion === 5) {
+                isValid = interviewData.meetingDate !== '' && interviewData.meetingTime !== '';
+                submitBtn.disabled = !isValid;
+                submitBtn.style.opacity = isValid ? '1' : '0.5';
             }
         }
         
         function nextQuestion() {
-            if (currentQuestion < 3) {
-                showQuestion(currentQuestion + 1);
+            if (currentQuestion < 5) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
             }
         }
         
@@ -1381,16 +2431,20 @@
             console.log('User data:', user);
             console.log('Interview data:', interviewData);
             
-            const submissionData = {
-                action: 'submitPartnerService',
+            // Prepare AI Profile data for the new function
+            const aiProfileData = {
+                action: 'submitAIProfile',
                 profileId: user.profileId,
                 partnerType: interviewData.partnerType,
-                services: [...new Set(interviewData.services)].join(','), // Remove duplicates // Convert array to comma-separated string
-                meetingDate: interviewData.meetingDate,
-                meetingTime: interviewData.meetingTime
+                serviceInterest: [...new Set(interviewData.services)].join(','),
+                industryType: [...new Set(interviewData.industries)].join(','),
+                industryExperience: interviewData.experienceIndustry,
+                yearOfExp: interviewData.experienceYears,
+                orgType: interviewData.workType === 'organisation' ? interviewData.organisationName : interviewData.workType,
+                connectTime: `${interviewData.meetingDate} at ${interviewData.meetingTime}`
             };
             
-            console.log('Submission data:', submissionData);
+            console.log('AI Profile data:', aiProfileData);
             
             // Show loading state
             const submitBtn = document.getElementById('submit-btn');
@@ -1399,8 +2453,8 @@
             submitBtn.disabled = true;
             
             // Use GET method with URL parameters (more reliable for Google Apps Script)
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbzMGF0qEor5ASddT7wARkqZKTMepOVaOpvAIniuFf4R1Jpajc7_553MteZGW68H3ade/exec';
-            const params = new URLSearchParams(submissionData);
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbwC1fvd5mHB_05kYaibR2JPxBFpzwFw-8n-bBFlL0ms8aYPjJS85QIpwLGPQQzKGldZ/exec';
+            const params = new URLSearchParams(aiProfileData);
             
             console.log('Making request to:', `${scriptUrl}?${params}`);
             
@@ -1414,7 +2468,7 @@
                 // Store locally as backup
                 const existingInterviews = JSON.parse(localStorage.getItem('aiInterviews') || '[]');
                 existingInterviews.push({
-                    ...submissionData,
+                    ...aiProfileData,
                     submittedAt: new Date().toISOString()
                 });
                 localStorage.setItem('aiInterviews', JSON.stringify(existingInterviews));
@@ -1432,7 +2486,7 @@
                 // Even on error, store locally and show success
                 const existingInterviews = JSON.parse(localStorage.getItem('aiInterviews') || '[]');
                 existingInterviews.push({
-                    ...submissionData,
+                    ...aiProfileData,
                     submittedAt: new Date().toISOString(),
                     status: 'pending_sync'
                 });
@@ -1483,6 +2537,9 @@
             if (e.key === 'Escape' && document.getElementById('services-popup').classList.contains('active')) {
                 closeServicesPopup();
             }
+            if (e.key === 'Escape' && document.getElementById('referral-popup').classList.contains('active')) {
+                closeReferralPopup();
+            }
         });
         
         function openServicesPopup() {
@@ -1498,7 +2555,7 @@
         
         function loadServicesData() {
             const user = partnerAuth.getCurrentUser();
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbzMGF0qEor5ASddT7wARkqZKTMepOVaOpvAIniuFf4R1Jpajc7_553MteZGW68H3ade/exec';
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbwC1fvd5mHB_05kYaibR2JPxBFpzwFw-8n-bBFlL0ms8aYPjJS85QIpwLGPQQzKGldZ/exec';
             const callbackName = 'servicesCallback' + Date.now();
             
             document.getElementById('services-loading').style.display = 'block';

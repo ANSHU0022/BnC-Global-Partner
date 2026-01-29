@@ -1,79 +1,176 @@
-# BnC Global Partner Page
+# BnC Global Partner Portal
 
-A modern, responsive partner page for BnC Global featuring partnership opportunities and event management.
+A modern, secure partner portal for BnC Global with AI profiling, authentication, and comprehensive partner management.
 
-## Features
+## 🚀 Features
 
-- **Partnership Types**: Strategic, Channel, and Technology partnerships
-- **Events Section**: Recent and upcoming events display
-- **Partner Application Form**: Interactive form for partnership applications
-- **Responsive Design**: Works on all devices
-- **Smooth Animations**: Scroll-based animations and transitions
+- **Multi-step Partner Registration**
+- **Secure Authentication System**
+- **AI Partner Profiling (5 Questions)**
+- **Partner Dashboard**
+- **Admin Dashboard**
+- **Security Features** (CSRF, XSS Protection, Rate Limiting)
+- **Responsive Design**
+- **Google Apps Script Integration**
 
-## File Structure
+## 🛠️ Tech Stack
+
+- **Frontend**: HTML5, CSS3, JavaScript, Tailwind CSS
+- **Build Tool**: Vite
+- **Backend**: Google Apps Script
+- **Database**: Google Sheets
+- **Deployment**: Vercel
+
+## 📦 Installation
+
+1. **Clone the repository**
+```bash
+git clone <your-repo-url>
+cd BnC-Partner
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Development server**
+```bash
+npm run dev
+```
+
+4. **Build for production**
+```bash
+npm run build
+```
+
+## 🚀 Deployment to Vercel
+
+### Method 1: Vercel CLI
+```bash
+npm install -g vercel
+vercel --prod
+```
+
+### Method 2: GitHub Integration
+1. Push code to GitHub
+2. Connect repository to Vercel
+3. Auto-deploy on push
+
+### Method 3: Manual Upload
+1. Run `npm run build`
+2. Upload `dist` folder to Vercel
+
+## 🔧 Configuration
+
+### Environment Setup
+- Development: `localhost:3000`
+- Production: Auto-detected by domain
+
+### Google Apps Script URL
+Update in `config.js`:
+```javascript
+API_URL: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'
+```
+
+## 🔒 Security Features
+
+- **CSRF Protection**
+- **XSS Prevention**
+- **Input Sanitization**
+- **Rate Limiting**
+- **Session Management**
+- **Content Security Policy**
+- **Clickjacking Protection**
+
+## 📁 File Structure
 
 ```
 BnC Partner/
-├── index.html          # Main HTML file
-├── styles.css          # CSS styling
-├── script.js           # JavaScript functionality
-└── README.md           # This file
+├── index.html              # Main landing page
+├── login.html              # Login page
+├── partner-dashboard.html   # Partner dashboard
+├── admin-dashboard.html     # Admin dashboard
+├── config.js               # Environment configuration
+├── security.js             # Security utilities
+├── auth-system.js          # Authentication system
+├── partner-form.js         # Form handling
+├── vercel.json             # Vercel configuration
+├── package.json            # Dependencies
+├── vite.config.js          # Vite configuration
+└── dist/                   # Build output
 ```
 
-## Customization Guide
+## 🎯 Key Components
 
-### 1. Update Company Information
-- Edit the logo and company name in the header
-- Update contact information in the footer
-- Modify the hero section content
+### 1. Partner Registration
+- Multi-step form (3 steps)
+- Email, phone, name validation
+- Country/city selection
+- Terms acceptance
 
-### 2. Add Your Events
-In `index.html`, update the events section:
-- Replace sample events with your actual events
-- Update dates, locations, and descriptions
-- Add registration/information links
+### 2. AI Profiling
+- 5 comprehensive questions
+- Industry selection
+- Experience assessment
+- Meeting scheduling
 
-### 3. Customize Partnership Types
-- Modify the partnership cards in the partnerships section
-- Update icons, titles, and descriptions
-- Add or remove partnership categories
+### 3. Security System
+- Input sanitization
+- CSRF tokens
+- Rate limiting
+- Session validation
 
-### 4. Form Integration
-To make the form functional:
-- Add a backend endpoint to handle form submissions
-- Update the JavaScript in `script.js` to send data to your server
-- Consider adding email notifications
+## 📊 Google Sheets Integration
 
-### 5. Styling Customization
-In `styles.css`:
-- Update color scheme (currently uses blue #2c5aa0 as primary)
-- Modify fonts and typography
-- Adjust spacing and layout
+### Sheets Created:
+1. **Main Sheet**: Partner registration data
+2. **Admin Sheet**: Admin credentials
+3. **Partner Service Sheet**: Service selections
+4. **AI Profile Sheet**: AI profiling responses
 
-## Quick Setup
+### Data Flow:
+1. User submits form → JavaScript
+2. JavaScript → Google Apps Script
+3. Apps Script → Google Sheets
+4. Response → User interface
 
-1. Open `index.html` in a web browser to view the page
-2. Customize content as needed
-3. Deploy to your web server
+## 🔍 Troubleshooting
 
-## Integration with Main Website
+### Common Issues:
 
-To integrate with your main website (bncglobal.in):
-1. Upload files to a subdirectory (e.g., `/partners/`)
-2. Update navigation links in your main site
-3. Ensure consistent branding and styling
+1. **Buttons not working on Vercel**
+   - Check CSP headers in `vercel.json`
+   - Verify script loading order
 
-## Browser Support
+2. **Google Apps Script errors**
+   - Confirm script URL is correct
+   - Check CORS settings
+   - Verify deployment status
+
+3. **Build failures**
+   - Run `npm install` to update dependencies
+   - Check Node.js version compatibility
+
+## 📱 Browser Support
 
 - Chrome (latest)
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
 
-## Future Enhancements
+## 🤝 Contributing
 
-- Add CMS integration for easy event management
-- Implement partner portal with login
-- Add testimonials section
-- Include partnership success stories
-- Add multi-language support
+1. Fork the repository
+2. Create feature branch
+3. Make changes
+4. Test thoroughly
+5. Submit pull request
+
+## 📄 License
+
+© 2026 BnC Global Pvt. Ltd. All rights reserved.
+
+## 📞 Support
+
+For technical support, contact: support@bncglobal.in
