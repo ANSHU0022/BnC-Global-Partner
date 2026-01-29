@@ -1,22 +1,17 @@
 {
   "name": "bnc-partner-page",
   "version": "1.0.0",
-  "description": "BnC Global Partner Page with TypeScript and Tailwind CSS",
+  "description": "BnC Global Partner Page",
   "main": "index.html",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "build-css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+    "build": "node build.js",
+    "preview": "vite preview"
   },
   "dependencies": {
     "vite": "^4.4.0"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "tailwindcss": "^3.3.0",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.24",
-    "@types/node": "^20.0.0"
+    "typescript": "^5.0.0"
   }
 }
